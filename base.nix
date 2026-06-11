@@ -6,6 +6,32 @@
   home.homeDirectory = "/home/benattia";
   home.stateVersion = "26.05";
 
+  users.users.benattia = {
+    isNormalUser = true;
+    description = "Benattia";
+    extraGroups = [ "networkmanager" "wheel" "video" "adbusers" "libvirtd" "kvm" ];
+  };
+
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+  # gdm alternative
+  services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = {
+        command = "Hyprland";
+        user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
+      };
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+        user = "benattia";
+      };
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
