@@ -1,6 +1,19 @@
 { config, pkgs, ... }:
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
+  # overlay لإضافة الحزم من unstable
+ # unstable = import <unstable> {
+ #   config.allowUnfree = true;
+ # };
 
+in
 {
+  imports =
+  [
+    ( import "${home-manager}/nixos" )
+      #"${home-manager}/nixos"
+  ];
+
   home.enableNixpkgsReleaseCheck = false;
   home.username = "benattia";
   home.homeDirectory = "/home/benattia";
@@ -9,7 +22,7 @@
   users.users.benattia = {
     isNormalUser = true;
     description = "Benattia";
-    extraGroups = [ "networkmanager" "wheel" "video" "adbusers" "libvirtd" "kvm" ];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   programs.hyprland = {
@@ -68,30 +81,6 @@
 
     };
 
-  };
-
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      nrs = "sudo nixos-rebuild switch";
-      ce = "sudo nano /etc/nixos/configuration.nix";
-    };
-
-    initExtra = ''
-      export PS1='\[\e[38;5;76m\]\u\[\e[0m\] in \[\e[38;5;32m\]\w\[\e[0m\] \\$ '
-    '';
-  };
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window.opacity = 0.9;
-      font.normal = {
-        family = "Ubuntu Mono";
-        style = "Regular";
-      };
-      font.size = 17;
-    };
   };
 
   environment.systemPackages = with pkgs; [
