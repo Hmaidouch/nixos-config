@@ -24,7 +24,7 @@ in
     wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      "$mod" = "SUPER";
+      #"$mod" = "SUPER";
 
        input = {
          kb_layout = "fr,ara";
@@ -42,18 +42,10 @@ in
         "Unknown-1,1920x1080@60,0x0,1"
       ];
 
-      bind = [
-        "$mod, Q, killactive"
-        "$mod, T, exec, alacritty"
-        "$mod, B, exec, firefox"
-        "$mod, E, exec, nemo"
-      ];
-
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-        "$mod ALT, mouse:272, resizewindow"
-      ];
+      hl.bind("SUPER + Q", hl.dsp.exec_cmd("killactive"))
+      hl.bind("SUPER + T", hl.dsp.exec_cmd("alacritty"))
+      hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
+      hl.bind("SUPER + E", hl.dsp.exec_cmd("nemo"))
 
     };
 
