@@ -14,38 +14,14 @@ in
       #"${home-manager}/nixos"
   ];
 
-  home.enableNixpkgsReleaseCheck = false;
-  home.username = "benattia";
-  home.homeDirectory = "/home/benattia";
-  home.stateVersion = "26.05";
+  home-manager.users.benattia = {
+  
+    home.enableNixpkgsReleaseCheck = false;
+    home.username = "benattia";
+    home.homeDirectory = "/home/benattia";
+    home.stateVersion = "26.05";
 
-  users.users.benattia = {
-    isNormalUser = true;
-    description = "Benattia";
-    extraGroups = [ "networkmanager" "wheel" ];
-  };
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
-  };
-  # gdm alternative
-  services.greetd = {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "Hyprland";
-        user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
-      };
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
-        user = "benattia";
-      };
-    };
-  };
-
-  wayland.windowManager.hyprland = {
+    wayland.windowManager.hyprland = {
     enable = true;
     settings = {
       "$mod" = "SUPER";
@@ -83,11 +59,41 @@ in
 
   };
 
+  };
+
+  users.users.benattia = {
+    isNormalUser = true;
+    description = "Benattia";
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
+
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+  # gdm alternative
+  services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = {
+        command = "Hyprland";
+        user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
+      };
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+        user = "benattia";
+      };
+    };
+  };
+
+  
+
   environment.systemPackages = with pkgs; [
     firefox
     vscode
-    hyprland
     alacritty
+    nemo
   ];
 
 }
