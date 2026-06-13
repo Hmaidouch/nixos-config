@@ -26,7 +26,7 @@ in
     settings = {
       #"$mod" = "SUPER";
 
-       input = {
+       config.input = {
          kb_layout = "fr,ara";
          kb_options = "grp:alt_shift_toggle";
        };
