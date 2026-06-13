@@ -21,34 +21,35 @@ in
     home.homeDirectory = "/home/benattia";
     home.stateVersion = "26.05";
 
-    wayland.windowManager.hyprland = {
-    enable = true;
-    settings = {
-      #"$mod" = "SUPER";
+    home.file.".config/hypr/hyprland.lua".text = ''
+      hl.config({
+        input = {
+            kb_layout = "fr,ara",
+            kb_options = "grp:alt_shift_toggle"
+        },
 
-       hl.on("hyprland.start", function () 
-         hl.exec_cmd("firefox") -- Execute waybar, hyprpaper, firefox
-       end);
+        monitor = {
+            "Unknown-1,1920x1080@60,0x0,1"
+        }
+    })
 
-       config.input = {
-         kb_layout = "fr,ara";
-         kb_options = "grp:alt_shift_toggle";
-       };
+    hl.bind("SUPER + Q", hl.dsp.window.close())
+    hl.bind("SUPER + T", hl.dsp.exec_cmd("alacritty"))
+    hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
+    hl.bind("SUPER + E", hl.dsp.exec_cmd("nemo"))
 
-      config.monitor = [
-        #        "eDP-1,1920x1080@59.99,auto,1"
-        # ",prefered,auto,1"
-        "Unknown-1,1920x1080@60,0x0,1"
-      ];
+    hl.bind(
+        "SUPER + mouse:272",
+        hl.dsp.window.drag(),
+        { mouse = true }
+    )
 
-     # hl.bind("SUPER + Q", hl.dsp.exec_cmd("killactive"))
-     # hl.bind("SUPER + T", hl.dsp.exec_cmd("alacritty"))
-     # hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
-     # hl.bind("SUPER + E", hl.dsp.exec_cmd("nemo"))
-
-    };
-
-  };
+    hl.bind(
+        "SUPER + mouse:273",
+        hl.dsp.window.resize(),
+        { mouse = true }
+    )
+  '';
 
   };
 
