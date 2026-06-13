@@ -37,6 +37,7 @@ in
     hl.bind("SUPER + T", hl.dsp.exec_cmd("alacritty"))
     hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
     hl.bind("SUPER + E", hl.dsp.exec_cmd("nemo"))
+    hl.bind("SUPER + C", hl.dsp.exec_cmd("code"))
 
     hl.bind(
         "SUPER + mouse:272",
