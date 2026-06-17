@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 
 {
+   
+    boot.kernelPackages = pkgs.linuxPackages_lts;
 
-  home-manager.users.benattia = {
+    home-manager.users.benattia = {
   
     home.enableNixpkgsReleaseCheck = false;
     home.username = "benattia";
@@ -49,7 +51,7 @@
     nemo
   ];
 
-  hardware.graphics = {
+hardware.graphics = {
   enable = true;
   enable32Bit = true;
 };
@@ -57,6 +59,11 @@
 # 2. إخبار النظام بتحميل تعريف نفيديا
 services.xserver.videoDrivers = [ "nvidia" ];
 
+nixpkgs.config = {
+    allowUnfree = true;
+    nvidia.acceptLicense = true;
+  };
+  
 hardware.nvidia = {
   # إلزامي جداً لوايلاند وهايبرلاند
   modesetting.enable = true;
