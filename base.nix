@@ -2,8 +2,6 @@
 
 {
    
-    boot.kernelPackages = pkgs.linuxPackages_lts;
-
     home-manager.users.benattia = {
   
     home.enableNixpkgsReleaseCheck = false;
