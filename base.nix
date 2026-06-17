@@ -2,8 +2,6 @@
 
 {
 
-  options nvidia_drm modeset=1;
-
   home-manager.users.benattia = {
   
     home.enableNixpkgsReleaseCheck = false;
