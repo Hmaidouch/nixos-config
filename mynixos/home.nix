@@ -25,7 +25,7 @@ in
 
     # sessions
    # (/. + "${dotfilesRoot}/sessions/hyprland/default.nix")
-    ("./sessions/hyprland/default.nix")
+    (./sessions/hyprland/default.nix)
     ] ++ programImports; 
    
     home-manager.users.benattia = {
