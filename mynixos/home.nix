@@ -4,8 +4,9 @@ let
   # 1. Define the path to your programs directory
   #programsDir = /home/benattia/mynixos/config3/programs;
 
-  dotfilesRoot = "/home/benattia/nixos-config/mynixos";
-  programsDir = /. + "${dotfilesRoot}/programs";
+  dotfilesRoot = "./mynixos";
+  programsDir = ./programs;
+  #programsDir = /. + "${dotfilesRoot}/programs";
 
   # 2. Get the content of the directory
   files = builtins.readDir programsDir;
@@ -23,7 +24,8 @@ in
     imports = [
 
     # sessions
-    (/. + "${dotfilesRoot}/sessions/hyprland/default.nix")
+   # (/. + "${dotfilesRoot}/sessions/hyprland/default.nix")
+    ("./sessions/hyprland/default.nix")
     ] ++ programImports; 
    
     home-manager.users.benattia = {
