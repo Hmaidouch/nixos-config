@@ -55,43 +55,8 @@ hardware.graphics = {
 };
 
 # 2. إخبار النظام بتحميل تعريف نفيديا
-services.xserver.videoDrivers = [ "nvidia" ];
+services.xserver.videoDrivers = [ "nouveau" ];
 
-nixpkgs.config = {
-    allowUnfree = true;
-    nvidia.acceptLicense = true;
-  };
-  
-hardware.nvidia = {
-  # إلزامي جداً لوايلاند وهايبرلاند
-  modesetting.enable = true;
-
-  # عطل خيارات الطاقة المتقدمة لأنها تسبب تجمد الكروت القديمة عند الخمول
-  powerManagement.enable = false;
-  powerManagement.finegrained = false;
-
-  # الكروت القديمة لا تدعم التعريفات مفتوحة المصدر الجديدة من نفيديا
-  open = false;
-
-  # تفعيل واجهة التحكم تيرمينال/تطبيق نفيديا
-  nvidiaSettings = true;
-
-  # 🔥 السطر السحري: إجبار النظام على استخدام إصدار 470 المتوافق مع كرتك
-  package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-};
-
-environment.sessionVariables = {
-  # إجبار الحزم على استخدام كرت نفيديا عبر خادم GBM
-  GBM_BACKEND = "nvidia-drm";
-  __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  LIBVA_DRIVER_NAME = "nvidia";
-
-  # سطر الأمان لمنع اختفاء مؤشر الماوس (مشكلة شهيرة في نفيديا)
-  WLR_NO_HARDWARE_CURSORS = "1";
-  
-  # إجبار تطبيقات Qt (مثل فوتوشوب المحاكي أو الواجهات) على استخدام وايلاند
-  QT_QPA_PLATFORM = "wayland";
-};
 
 }
 
