@@ -2,7 +2,8 @@
 hl.config({
     input = {
         kb_layout = "fr,ara",
-        kb_options = "grp:alt_shift_toggle"
+        kb_options = "grp:alt_shift_toggle",
+        follow_mouse = 0
     },
 
     monitor = {
@@ -32,14 +33,13 @@ hl.config({
         enabled = false;
       };
     },
-
+    
     misc = {
-      font_family = "JetBrains Mono";
-      force_default_wallpaper = 0;
-      mouse_move_enables_dpms = true;
-
-      focus_on_activate = true;
-      mouse_move_focuses_monitor = true;
+        force_default_wallpaper = 0;
+        
+        mouse_move_enables_dpms = true;
+        focus_on_activate = true;
+        mouse_move_focuses_monitor = true;
     }
 })
 

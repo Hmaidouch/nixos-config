@@ -43,6 +43,7 @@ in
     isNormalUser = true;
     description = "Benattia";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   };
 
   programs.hyprland = {
