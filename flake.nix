@@ -18,7 +18,7 @@
         modules = [
           ./hardware-configuration.nix
           ./configuration.nix
-          ./base.nix
+          ./mynixos/base.nix
           
           # تفعيل موديل home-manager داخل الفليكس
           home-manager.nixosModules.home-manager
