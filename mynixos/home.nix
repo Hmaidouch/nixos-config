@@ -73,6 +73,8 @@ in
     vscode
     alacritty
     nemo
+    posy-cursors
+    
   ];
 
 hardware.graphics = {

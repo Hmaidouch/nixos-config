@@ -11,6 +11,10 @@
       ./hardware-configuration.nix
     ];
 
+  nix.settings = {
+    keep-outputs = true;
+    keep-derivations = true;
+  };
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -12,6 +12,34 @@ hl.config({
 
     cursor = {
       no_hardware_cursors = true
+    },
+
+    general = {
+      gaps_in = 1;
+      gaps_out = 0;
+    },
+
+    decoration = {
+      rounding = 4;
+      active_opacity = 1.0;
+      inactive_opacity = 1.0;
+      blur = {
+        enabled = true;
+        size = 8;
+        passes = 3;
+      };
+      shadow = {
+        enabled = false;
+      };
+    },
+
+    misc = {
+      font_family = "JetBrains Mono";
+      force_default_wallpaper = 0;
+      mouse_move_enables_dpms = true;
+
+      focus_on_activate = true;
+      mouse_move_focuses_monitor = true;
     }
 })
 
@@ -36,5 +64,8 @@ hl.bind(
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 
-hl.env = XCURSOR_SIZE,10
-hl.env = XCURSOR_THEME,Posy_Cursor
+hl.env("XCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "Posy_Cursor")
+
+hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_THEME", "Posy_Cursor")
