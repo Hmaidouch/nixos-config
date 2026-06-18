@@ -4,7 +4,7 @@ let
   # 1. Define the path to your programs directory
   #programsDir = /home/benattia/mynixos/config3/programs;
 
-  dotfilesRoot = "./mynixos";
+  #dotfilesRoot = "./mynixos";
   programsDir = ./programs;
   #programsDir = /. + "${dotfilesRoot}/programs";
 
@@ -35,7 +35,7 @@ in
     home.homeDirectory = "/home/benattia";
     home.stateVersion = "26.05";
 
-    xdg.configFile."hypr/hyprland.lua".source = ./hyprland.lua;
+    xdg.configFile."hypr/hyprland.lua".source = ./sessions/hyprland/hyprland.lua;
 
   };
 
