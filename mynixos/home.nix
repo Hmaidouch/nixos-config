@@ -38,56 +38,5 @@ in
 
   };
 
-  users.users.benattia = {
-    isNormalUser = true;
-    description = "Benattia";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-  };
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
-  };
-  # gdm alternative
-  services.greetd = {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "start-hyprland";
-        user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
-      };
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
-        user = "benattia";
-      };
-    };
-  };
-
-  
-
-  environment.systemPackages = with pkgs; [
-    git
-    firefox
-    vscode
-    alacritty
-    nemo
-    unzip
-    posy-cursors
-
-    #swaynotificationcenter
-    
-  ];
-
-hardware.graphics = {
-  enable = true;
-  enable32Bit = true;
-};
-
-# 2. إخبار النظام بتحميل تعريف نفيديا
-services.xserver.videoDrivers = [ "nouveau" ];
-
-
 }
 

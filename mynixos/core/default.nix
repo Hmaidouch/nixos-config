@@ -3,6 +3,7 @@
 {
   imports = [
     ./fonts.nix
-    # أي إعدادات نظام أساسية أخرى تضيفها مستقبلاً
+    ./graphics.nix
+    ./configurationuser.nix
   ];
 }
