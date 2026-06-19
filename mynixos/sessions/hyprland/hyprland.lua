@@ -7,8 +7,7 @@ hl.config({
     },
 
     monitor = {
-      "HDMI-A-1, 1920x1080@60, 0x0, 1",
-      "Unknown-1, disable"
+      ", 1920x1080@60, 0x0, 1",
     },
 
     cursor = {
@@ -48,6 +47,17 @@ hl.bind("SUPER + T", hl.dsp.exec_cmd("alacritty"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nemo"))
 hl.bind("SUPER + C", hl.dsp.exec_cmd("code"))
+-- 1. التنقل للأمام باستخدام Alt + Tab وجلب النافذة للمقدمة
+hl.bind("ALT + Tab", function()
+  hl.dispatch(hl.dsp.window.cycle_next())
+  hl.dispatch(hl.dsp.window.bring_to_top())
+end)
+
+-- 2. التنقل العكسي (للخلف) باستخدام Alt + Shift + Tab (مفيد جداً)
+hl.bind("ALT + SHIFT + Tab", function()
+  hl.dispatch(hl.dsp.window.cycle_next({ next = false }))
+  hl.dispatch(hl.dsp.window.bring_to_top())
+end)
 
 hl.bind(
     "SUPER + mouse:272",
@@ -69,3 +79,44 @@ hl.env("XCURSOR_THEME", "Posy_Cursor")
 
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "Posy_Cursor")
+
+
+-- =====================================================================
+-- قواعد النوافذ الحديثة (Hyprland Lua Window Rules)
+-- =====================================================================
+
+-- 1. القواعد الأساسية العامة (تُطبق على كل النوافذ)
+hl.window_rule({
+  match = { class = ".*" },
+  float = true,
+  move = "0 0",
+  size = "100% 1020"
+})
+
+--hl.window_rule({
+--  match = { class = "^(org.gnome.Calculator)$" },
+--  size = "360 510",
+--  move = "20 480"
+--})
+
+--hl.window_rule({
+--  match = { class = "^(org.pulseaudio.pavucontrol)$" },
+--  size = "360 510",
+--  move = "100%-370 100%-550"
+--})
+
+--hl.window_rule({
+--  match = { class = "^(nemo)$" },
+--  size = "1200 850",
+--  move = "100%-1920 100%-1000"
+--})
+
+--hl.window_rule({
+--  match = { class = "^(Alacritty)$" },
+--  size = "900 600",
+--  move = "100%-1000 100%-900"
+--})
+
+hl.on("hyprland.start", function () 
+  hl.exec_cmd("waybar")
+end)

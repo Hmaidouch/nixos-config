@@ -9,8 +9,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./mynixos/core
     ];
-
+  
   nix.settings = {
     keep-outputs = true;
     keep-derivations = true;

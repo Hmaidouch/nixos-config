@@ -27,15 +27,14 @@ in
    # (/. + "${dotfilesRoot}/sessions/hyprland/default.nix")
     (./sessions/hyprland/default.nix)
     ] ++ programImports; 
-   
+
+
     home-manager.users.benattia = {
   
     home.enableNixpkgsReleaseCheck = false;
     home.username = "benattia";
     home.homeDirectory = "/home/benattia";
     home.stateVersion = "26.05";
-
-    xdg.configFile."hypr/hyprland.lua".source = ./sessions/hyprland/hyprland.lua;
 
   };
 
@@ -74,7 +73,10 @@ in
     vscode
     alacritty
     nemo
+    unzip
     posy-cursors
+
+    #swaynotificationcenter
     
   ];
 

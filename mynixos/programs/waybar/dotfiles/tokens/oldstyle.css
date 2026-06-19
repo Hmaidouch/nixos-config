@@ -1,0 +1,16 @@
+@define-color all-color #999999;
+@define-color custom-launcher-color #ede2dc;
+@define-color custom-control-panel #e9d3c7;
+@define-color waybar-color rgba(45, 47, 59, 0.9);
+@define-color custom-prayer-color #89b4fa;
+@define-color cpu-color #c6a0f6;
+@define-color memory-color #f5a97f;
+@define-color clock-color #eed49f;
+@define-color date-color #ed8796;
+@define-color pulseaudio-color #eed49f;
+@define-color language-color #8bd5ca;
+@define-color dark-light-color #8bd5ca;
+@define-color reddit_news-color #ff7b00;
+@define-color hyprland_news-color #73fd91;
+@define-color kmp_news-color #708afe;
+@define-color network-color #89b4fa;

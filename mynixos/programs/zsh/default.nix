@@ -34,6 +34,7 @@
       nrs = "sudo nixos-rebuild switch --flake .#benattia";
       nc = "sudo nix-collect-garbage -d";
       mntd = "sudo mount /dev/sda1 /mnt/disk_d";
+      cc = "clear";
 
       cdn = "cd ~/nixos-config";
     };

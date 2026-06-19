@@ -1,0 +1,156 @@
+{
+
+    "custom/theme_switch" : {
+      "format" : "🎨",
+      "tooltip" : true,
+      "tooltip-format" : "Change GTK Theme",
+      "on-click" : "bash ~/.config/hypr/scripts/themes/theme_switch.sh"
+    },
+    "custom/iconstheme_switch" : {
+      "format" : "🎨",
+      "tooltip" : true,
+      "tooltip-format" : "Change GTK Icone Theme",
+      "on-click" : "bash ~/.config/hypr/scripts/themes/iconstheme_switch.sh"
+    },
+
+    "wlr/taskbar" : {
+      "format" : "{icon}",
+      "icon-size" : 28,
+      "tooltip-format" : "{title}",
+      "on-click" : "activate",
+      "on-click-right" : "close",
+      "ignore-list" : [
+        "rofi"
+      ],
+      "app_ids-mapping" : {
+        "firefoxdeveloperedition" : "firefox-developer-edition"
+      }
+    },
+
+
+    "custom/launcher" : {
+      "format" : "󱄅",
+      "tooltip" : false,
+      "on-click" : "bash ~/.config/hypr/scripts/rofi_show.sh"
+    },
+
+    "custom/show-desktop" : {
+      "format" : "+",
+      "tooltip" : "Show Desktop",
+      "on-click" : "hyprctl dispatch workspace empty",
+    },
+
+    "hyprland/workspaces" : {
+      "disable-scroll" : false,
+      "all-outputs" : true,
+      "format" : "{name}",
+      "on-scroll-up" : "hyprctl dispatch workspace e-1",
+      "on-scroll-down" : "hyprctl dispatch workspace e+1",
+      "smooth-scrolling-threshold" : 7
+    },
+
+    "custom/reddit_news" : {
+      "format" : "",
+      "tooltip" : true,
+      "tooltip-format" : "Click to see latest NixOS news",
+      "on-click" : "bash ~/.config/hypr/scripts/news/nixos-news.sh"
+    },
+
+    "custom/hyprland_news" : {
+      "format" : "",
+      "tooltip" : true,
+      "tooltip-format" : "Click to see latest NixHyprlandOS news",
+      "on-click" : "bash ~/.config/hypr/scripts/news/hyprland-news.sh",
+    },
+
+    "custom/kmp_news" : {
+      "format" : "",
+      "tooltip" : true,
+      "tooltip-format" : "Click to see latest KMP news",
+      "on-click" : "bash ~/.config/hypr/scripts/news/kmp-news.sh"
+    },
+
+    "custom/prayer" : {
+      "format" : "{}",
+      "exec" : "bash ~/.config/hypr/scripts/salat.sh",
+      "interval" : 60,
+      "tooltip" : true
+    },
+
+    "custom/waybar_style_toggle" : {
+      "format" : "󰹞",
+      "on-click" : "bash ~/.config/hypr/scripts/waybar_style.sh",
+      "tooltip" : false
+    },
+
+    "cpu" : {
+      "format" : "󰍛 {usage}%"
+    },
+
+    "memory" : {
+      "format" : "󰘚 {percentage}%"
+    },
+
+    "hyprland/language" : {
+      "format" : " {}",
+      "format-ar" : "AR",
+      "format-fr" : "FR",
+      "on-click" : "hyprctl switchxkblayout all next"
+    },
+
+    "clock" : {
+      "format" : " {:%H:%M}",
+      "tooltip" : false
+    },
+
+    "clock#date" : {
+      "format" : " {:%d %b}",
+      "on-click" : "gsimplecal",
+      "tooltip-format" : "<tt><small>{calendar}</small></tt>",
+      "calendar" : {
+        "mode" : "month",
+        "weeks-pos" : "right",
+        "on-scroll" : 1,
+        "format" : {
+          "months" : "<span color='#c6a0f6'><b>{}</b></span>",
+          "days" : "<span color='#cad3f5'><b>{}</b></span>",
+          "weeks" : "<span color='#8bd5ca'><b>{}</b></span>",
+          "weekdays" : "<span color='#eed49f'><b>{}</b></span>",
+          "today" : "<span color='#ed8796'><b><u>{}</u></b></span>"
+        }
+      }
+    },
+
+    "network" : {
+      "interval" : 2,
+      "format-wifi" : "",
+      "format-ethernet" : "󰈀",
+      "format-disconnected" : "󰤮",
+      "tooltip-format" : "{ifname} via {gwaddr}",
+      "tooltip-format-wifi" : " {essid} ({signalStrength}%)\n⇣ {bandwidthDownBytes}  ⇡ {bandwidthUpBytes}",
+      "tooltip-format-ethernet" : "󰈀 {ifname}\n⇣ {bandwidthDownBytes}  ⇡ {bandwidthUpBytes}",
+      "max-length" : 10
+    },
+
+    "pulseaudio": {
+      "format" : "{icon} {volume}",
+      "format-muted" : "󰝟 Muted",
+      "on-click" : "pavucontrol & sleep 10 && pkill pavucontrol",
+      "format-icons" : {
+        "headphone" : "󰋋",
+        "hands-free" : "󰋎",
+        "headset" : "󰋎",
+        "phone" : "󰏲",
+        "portable" : "󰏲",
+        "car" : "󰄄",
+        "default" : [ "󰖀", "󰕾" ]
+      }
+    },
+
+    "custom/control-panel": {
+      "format" : "󰤆",
+      "on-click" : "bash ~/.config/hypr/scripts/control_menu.sh",
+      "tooltip" : false
+    }
+
+}

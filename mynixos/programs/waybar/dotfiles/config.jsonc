@@ -1,0 +1,40 @@
+/*
+ * @author Muhammad Haikal Hakim
+ * @repository https://github.com/haikal-hakim/athena
+ */
+{
+  "layer": "top",
+  "height": 32,
+  "position": "bottom",
+  "spacing": 5,
+  "exclusive": true,
+  "include": [
+    "./modules/modules.jsonc"
+  ],
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "custom/show-desktop"
+  ],
+  "modules-center": [
+    "wlr/taskbar"
+  ],
+  "modules-right": [
+    "custom/prayer",
+    "custom/waybar_style_toggle",
+    "custom/theme_switch",
+    "custom/iconstheme_switch",
+    "custom/waybar_color_toggle",
+    "cpu",
+    "memory",
+    "custom/reddit_news",
+    "custom/hyprland_news",
+    "custom/kmp_news",
+    "hyprland/language",
+    "clock",
+    "clock#date",
+    "network",
+    "pulseaudio",
+    "custom/control-panel"
+  ]
+}
