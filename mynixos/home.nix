@@ -36,7 +36,12 @@ in
     home.homeDirectory = "/home/benattia";
     home.stateVersion = "26.05";
 
+    home.packages = [
+      pkgs.rofi
+      (pkgs.writeShellScriptBin "rofi_show" (builtins.readFile ./scripts/rofi_show.sh))
+    ];
   };
+ 
 
 }
 

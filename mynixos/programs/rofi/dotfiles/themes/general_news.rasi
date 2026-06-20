@@ -1,0 +1,120 @@
+/* ---- 💫 تصميم عصري لقائمة الطاقة 💫 ---- */
+
+configuration {
+    show-icons:      true;
+    hover-select:    true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+    drun-display-format: "{name}";
+    kb-cancel: "Escape,MousePrimary";
+}
+
+/*****----- الخصائص العامة (الألوان) -----*****/
+* {
+    /* ألوان زجاجية شفافة */
+  /*  bg-window:   rgba(30, 30, 46, 0.9);   */
+    bg-window:   rgba(245, 244, 244, 1);   
+    bg-element:  rgba(255, 255, 255, 1); /* لون الأزرار العادية */
+    bg-selected: rgba(255, 255, 255, 0.2);  /* لون الزر عند الوقوف عليه */
+    
+    fg-main:     #ffffff;
+    accent:      #89b4fa; /* لون أزرق ناعم للتحديد */
+
+   /* background-color: transparent; */
+    text-color:       @fg-main;
+   /* font:            "JetBrainsMono Nerd Font 20"; */
+}
+
+window {
+    location:       south east;
+    anchor:         south east;
+  width    : 700px;
+  height   : 700px;
+    x-offset:       -7px;
+    y-offset:       -7px;
+    
+    background-color: @bg-window;
+    border:           1px solid;
+    border-color:     rgba(255, 255, 255, 0.1);
+    border-radius:    16px; /* حواف دائرية ناعمة للنافذة */
+}
+
+mainbox {
+    children: [ "message", "listview" ];
+    padding:  14px;
+}
+
+/* إخفاء شريط البحث */
+inputbar { 
+    enabled: false; 
+}
+
+listview {
+    border: 0;
+    padding-top: 0;
+    columns:      1;
+    lines:        5;
+    spacing:      12px; /* مسافة بين الأزرار */
+    cycle:        true;
+    dynamic:      true;
+    scrollbar:    false;
+    layout:       vertical;
+}
+
+element {
+    orientation:      horizontal;
+    padding:          12px 4px;
+    border-radius:    8px; /* حواف دائرية للأزرار */
+    
+  /*  cursor:           pointer; */
+}
+/*
+element.normal.normal {
+  background-color: @bg-element;
+}
+
+element.alternate.normal {
+  background-color: @bg-element;
+}
+
+element selected {
+    background-color: @bg-selected;
+    border:           1px solid;
+    border-color:     @accent;
+}
+*/
+
+element-text {
+    vertical-align:   0.5;
+    horizontal-align: 0.0;
+    cursor:           inherit;
+  /*  font:             "JetBrains Mono Regular 11";*/
+    font:             "Ubuntu Mono 12";
+   /* font:             "Vazirmatn Regular 12";*/
+   /* font: "Segoe UI 11"; */
+  /*  cursor:           inherit;
+    font:             "Inter SemiBold 11";
+    */
+    markup:           true;
+}
+
+/* تحسين رسالة الخطأ إن وجدت */
+error-message {
+    padding:          20px;
+    background-color: @bg-window;
+    text-color:       @accent;
+}
+
+/* صندوق العنوان */
+message {
+    padding:      12px;
+    border:       0px 0px 2px 0px; /* خط سفلي خفيف ليفصل العنوان عن الأخبار */
+    border-color: #89b4fa; /* لون الخط الفاصل (يمكنك تغييره) */
+    background-color: transparent;
+}
+
+/* النص داخل صندوق العنوان */
+textbox {
+    text-color:       #1e1e2e; /* لون النص (اختر لوناً يناسب الثيم الفاتح لديك) */
+    horizontal-align: 0.5;     /* لجعل العنوان في المنتصف تماماً */
+}
