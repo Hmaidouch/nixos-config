@@ -21,13 +21,13 @@ let
   programImports = map (name: programsDir + "/${name}") directories;
 in
 {
+  #  imports = [
+  #    (./sessions/hyprland/default.nix)
+  #  ] ++ programImports; 
     imports = [
-
-    # sessions
-   # (/. + "${dotfilesRoot}/sessions/hyprland/default.nix")
-    (./sessions/hyprland/default.nix)
-    ] ++ programImports; 
-
+      ./sessions/hyprland/default.nix
+      ./sessions/niri/default.nix  
+    ] ++ programImports;
 
     home-manager.users.benattia = {
   

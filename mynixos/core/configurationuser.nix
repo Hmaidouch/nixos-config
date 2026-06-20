@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  # إعدادات Nix لتسهيل التطوير والاختبار
+  nix.settings = {
+    keep-outputs = true;
+    keep-derivations = true;
+  };
 
   users.users.benattia = {
     isNormalUser = true;
@@ -14,12 +19,13 @@
   services.greetd = {
     enable = true;
     settings = {
-      initial_session = {
-        command = "start-hyprland";
-        user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
-      };
+     # initial_session = {
+      #  command = "start-hyprland";
+     #   user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
+     # };
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+       # command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+       command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --sessions /run/current-system/sw/share/wayland-sessions";
         user = "benattia";
       };
     };
