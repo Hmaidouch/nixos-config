@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # --- الإعدادات ---
-API_KEY="AIzaSyCTsNTgxgop_OjIxzy7lBpQy9OfvG2v8mY"
+
 MODEL="gemini-2.5-flash-lite"
 # تأكد من أن هذا المسار موجود وصحيح
 CACHE_BASE="$HOME/.cache/waybar/reddit_ai/hyprland"

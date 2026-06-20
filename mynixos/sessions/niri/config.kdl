@@ -1,11 +1,5 @@
-// =====================================================================
-// Niri Configuration File (config.kdl)
-// =====================================================================
 
-// 1. تحديد مفتاح الاختصار الأساسي (Super = Windows Key)
-mod-key "Super"
 
-// 2. إعدادات الإدخال واللوحة (Input & Keyboard)
 input {
     keyboard {
         xkb {
@@ -13,60 +7,18 @@ input {
             options "grp:alt_shift_toggle"
         }
     }
-    
-    // توافقاً مع follow_mouse = 0 (التركيز عند الضغط فقط وليس بمجرد تحريك الماوس)
-    focus-follows-mouse { enable false; }
 }
 
-// 3. إعدادات الشاشة (Monitor)
-// ملاحظة: يمكنك استبدال "HDMI-A-1" باسم مخرج شاشتك الفعلي إذا لم يعمل التلقائي
 output "HDMI-A-1" {
     mode "1920x1080@60"
     scale 1.0
 }
 
-// 4. التصميم والفراغات (Layout & Aesthetics)
-layout {
-    gaps 1
-    geometry-corner-radius 4
-    
-    // تعطيل الحواف المضيئة السميكة للحفاظ على مظهر بسيط مريح للعين
-    border {
-        enable false
-    }
-    shadow {
-        enable false
-    }
-}
-
-// 5. البرامج التي تعمل تلقائياً عند الإقلاع (Autostart)
-spawn-at-startup "waybar"
-
-// 6. اختصارات لوحة المفاتيح والماوس (Keybindings)
 binds {
-    // اختصارات النظام والبرامج الأساسية
-    Mod+Q { close-window; }
-    Mod+T { spawn "alacritty"; }
-    Mod+B { spawn "firefox"; }
-    Mod+E { spawn "nemo"; }
-    Mod+C { spawn "code"; }
 
-    // التنقل بين الأعمدة والنوافذ باستخدام Alt + Tab
-    Alt+Tab       { focus-column-next; }
-    Alt+Shift+Tab { focus-column-previous; }
+  "Super+T" { spawn "alacritty";}
+  "Super+B" { spawn "firefox";}
+  "Super+C" { spawn "code";}
+  "Super+E" { spawn "nemo";}
 
-    // التحكم بالنوافذ عبر الماوس (السحب وإعادة التحجيم)
-    Mod+MouseLeft  { move-window-interactively; }
-    Mod+MouseRight { resize-window-interactively; }
-}
-
-// 7. قواعد النوافذ (Window Rules)
-window-rule {
-    // يطابق كل النوافذ
-    match class=".*"
-    
-    // ملاحظة: في Hyprland كنت تجعل كل النوافذ عائمة (float = true)
-    // في Niri، يفضل ترك الخيار مغلقاً للاستمتاع بالتراصف الأفقي اللانهائي،
-    // ولكن إذا كنت مصراً على جعل كل شيء عائماً كالسابق فقم بإلغاء التعليق عن السطر التالي:
-    // open-floating true
 }

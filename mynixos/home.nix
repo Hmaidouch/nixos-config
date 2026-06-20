@@ -25,8 +25,8 @@ in
   #    (./sessions/hyprland/default.nix)
   #  ] ++ programImports; 
     imports = [
+      ./sessions/niri/default.nix
       ./sessions/hyprland/default.nix
-      ./sessions/niri/default.nix  
     ] ++ programImports;
 
     home-manager.users.benattia = {

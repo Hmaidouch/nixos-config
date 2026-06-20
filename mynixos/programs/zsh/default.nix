@@ -40,7 +40,7 @@
     };
     
     
-    oh-my-zsh = {
+    ohMyZsh = {
         enable = true;
         plugins = [
           "git"                
