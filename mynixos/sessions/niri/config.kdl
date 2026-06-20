@@ -22,3 +22,5 @@ binds {
   "Super+E" { spawn "nemo";}
 
 }
+
+spawn-at-startup "waybar"

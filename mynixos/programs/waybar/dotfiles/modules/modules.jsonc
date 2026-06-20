@@ -31,7 +31,7 @@
     "custom/launcher" : {
       "format" : "󱄅",
       "tooltip" : false,
-      "on-click" : "bash ~/.config/hypr/scripts/rofi_show.sh"
+      "on-click" : "rofi_show"
     },
 
     "custom/show-desktop" : {
@@ -40,7 +40,7 @@
       "on-click" : "hyprctl dispatch workspace empty",
     },
 
-    "hyprland/workspaces" : {
+    "workspaces" : {
       "disable-scroll" : false,
       "all-outputs" : true,
       "format" : "{name}",
@@ -91,7 +91,7 @@
       "format" : "󰘚 {percentage}%"
     },
 
-    "hyprland/language" : {
+    "custom/language" : {
       "format" : " {}",
       "format-ar" : "AR",
       "format-fr" : "FR",

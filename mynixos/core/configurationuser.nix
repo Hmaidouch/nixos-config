@@ -21,10 +21,7 @@
     settings = {
       initial_session = {
        # command = "start-hyprland";
-      
-      # إجبار UWSM على تشغيل Niri مباشرة عند الإقلاع التلقائي
-      #  command = "uwsm start -S -s niri.desktop";
-       command = "niri-session";
+        command = "niri-session";
         user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
       };
       default_session = {

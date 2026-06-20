@@ -13,7 +13,7 @@
   ],
   "modules-left": [
     "custom/launcher",
-    "hyprland/workspaces",
+    "workspaces",
     "custom/show-desktop"
   ],
   "modules-center": [
@@ -30,7 +30,7 @@
     "custom/reddit_news",
     "custom/hyprland_news",
     "custom/kmp_news",
-    "hyprland/language",
+    "custom/language",
     "clock",
     "clock#date",
     "network",

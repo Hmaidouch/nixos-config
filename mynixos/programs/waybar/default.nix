@@ -2,9 +2,13 @@
 
 {
 
-  programs.waybar.enable = true;
-
   home-manager.users.benattia = {
+    
     xdg.configFile."waybar".source = ./dotfiles;
+
+    programs.waybar = {
+      enable = true;
+      systemd.enable = false;
+    };
   };
 }
