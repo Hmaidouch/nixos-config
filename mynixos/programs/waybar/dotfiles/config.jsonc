@@ -13,7 +13,7 @@
   ],
   "modules-left": [
     "custom/launcher",
-    "workspaces",
+    "custom/workspaces",
     "custom/show-desktop"
   ],
   "modules-center": [

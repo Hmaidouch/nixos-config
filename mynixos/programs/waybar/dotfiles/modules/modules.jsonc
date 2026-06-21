@@ -40,7 +40,7 @@
       "on-click" : "hyprctl dispatch workspace empty",
     },
 
-    "workspaces" : {
+    "custom/workspaces" : {
       "disable-scroll" : false,
       "all-outputs" : true,
       "format" : "{name}",
@@ -149,7 +149,7 @@
 
     "custom/control-panel": {
       "format" : "󰤆",
-      "on-click" : "bash ~/.config/hypr/scripts/control_menu.sh",
+      "on-click" : "control_menu",
       "tooltip" : false
     }
 

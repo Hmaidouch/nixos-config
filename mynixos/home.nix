@@ -39,6 +39,7 @@ in
     home.packages = [
       pkgs.rofi
       (pkgs.writeShellScriptBin "rofi_show" (builtins.readFile ./scripts/rofi_show.sh))
+      (pkgs.writeShellScriptBin "control_menu" (builtins.readFile ./scripts/control_menu.sh))
     ];
   };
  
