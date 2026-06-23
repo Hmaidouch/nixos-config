@@ -48,6 +48,8 @@
 
     pkgs.polkit_gnome
 
+    curl
+    jq
     #swaynotificationcenter
     
   ];

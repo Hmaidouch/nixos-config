@@ -72,7 +72,7 @@
 
     "custom/prayer" : {
       "format" : "{}",
-      "exec" : "bash ~/.config/hypr/scripts/salat.sh",
+      "exec" : "salat",
       "interval" : 60,
       "tooltip" : true
     },

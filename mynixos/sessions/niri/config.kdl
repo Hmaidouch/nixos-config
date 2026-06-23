@@ -21,6 +21,14 @@ binds {
   "Super+C" { spawn "code";}
   "Super+E" { spawn "nemo";}
 
+  // --- اختصارات حركة الفأرة العمودية والأفقية ---
+    "Super+WheelScrollDown"      cooldown-ms=150 { focus-window-or-workspace-down; }
+    "Super+WheelScrollUp"        cooldown-ms=150 { focus-window-or-workspace-up; }
+
+    // --- اختصارات لقطات الشاشة الحديثة ---
+    "Print"                      { screenshot; }
+    "Alt+Print"                  { screenshot-window; }
+   
 }
 
 spawn-at-startup "waybar"
