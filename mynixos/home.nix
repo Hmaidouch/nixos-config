@@ -42,27 +42,6 @@ in
       (pkgs.writeShellScriptBin "control_menu" (builtins.readFile ./scripts/control_menu.sh))
       (pkgs.writeShellScriptBin "salat" (builtins.readFile ./scripts/salat.sh))
     ];
-
-    home.file.".config/gtk-3.0/settings.ini".text = ''
-  [Settings]
-  gtk-theme-name=Orchis-Dark
-  gtk-icon-theme-name=Tela-circle-dark
-  gtk-cursor-theme-name=Posy-cursors
-'';
-
-# أو باستخدام الموديول الجاهز لـ Home Manager (وهو الأجمل):
-gtk = {
-  enable = true;
-  theme = {
-    name = "Orchis-Dark";
-    package = pkgs.orchis-theme;
-  };
-  iconTheme = {
-    name = "Tela-circle-dark";
-    package = pkgs.tela-circle-icon-theme;
-  };
-};
-
   };
  
 
