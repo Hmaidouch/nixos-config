@@ -42,6 +42,19 @@ in
       (pkgs.writeShellScriptBin "control_menu" (builtins.readFile ./scripts/control_menu.sh))
       (pkgs.writeShellScriptBin "salat" (builtins.readFile ./scripts/salat.sh))
     ];
+
+# أو باستخدام الموديول الجاهز لـ Home Manager (وهو الأجمل):
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Orchis-Light";
+        package = pkgs.orchis-theme;
+      };
+      iconTheme = {
+        name = "Tela-circle-light";
+        package = pkgs.tela-circle-icon-theme;
+      };
+    };
   };
  
 
