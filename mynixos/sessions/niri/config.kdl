@@ -29,7 +29,7 @@ binds {
     "Print"                      { screenshot; }
     "Alt+Print"                  { screenshot-window; }
 
-    "Super+L" { spawn "swaylock" "--screenshots" "--clock" "--timestr '%H:%M'" "--datestr '%d/%m/%Y'" "--font 'JetBrains Mono'" "--font-size 150" "--indicator-radius 300" "--indicator" "--effect-blur 7x5" "--effect-vignette 0.5:0.5" "--effect-greyscale"; }
+    "Super+L" { spawn "swaylock" "--screenshots" "--clock" "--timestr=%H:%M" "--datestr=%d/%m/%Y" "--font=JetBrains Mono" "--font-size=150" "--indicator-radius=300 " "--indicator" "--effect-blur=7x5" "--effect-vignette=0.5:0.5" "--effect-greyscale"; }
    
 }
 
