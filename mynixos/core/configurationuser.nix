@@ -20,7 +20,7 @@
     enable = true;
     settings = {
       initial_session = {
-       # command = "start-hyprland";
+        #command = "start-hyprland";
         command = "niri-session";
         user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
       };
@@ -45,6 +45,7 @@
     nemo
     unzip
     posy-cursors
+    swaylock-effects
 
     pkgs.polkit_gnome
 

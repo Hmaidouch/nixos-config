@@ -47,6 +47,8 @@ hl.bind("SUPER + T", hl.dsp.exec_cmd("alacritty"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nemo"))
 hl.bind("SUPER + C", hl.dsp.exec_cmd("code"))
+
+hl.bind("SUPER + L", hl.dsp.exec_cmd("swaylock --screenshots --clock --timestr '%H:%M' --datestr '%d/%m/%Y' --font 'JetBrains Mono' --font-size 150 --indicator-radius 300 --indicator --effect-blur 7x5 --effect-vignette 0.5:0.5 --effect-greyscale"))
 -- 1. التنقل للأمام باستخدام Alt + Tab وجلب النافذة للمقدمة
 hl.bind("ALT + Tab", function()
   hl.dispatch(hl.dsp.window.cycle_next())
