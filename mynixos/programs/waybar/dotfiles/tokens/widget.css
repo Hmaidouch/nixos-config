@@ -63,7 +63,8 @@
 #connections,
 #system,
 #storage,
-#news {
+#news,
+#themes {
   margin: 4px 5px;
   padding: 6px 6px;
   background-color: @surface_container;
@@ -79,7 +80,9 @@
 #custom-reddit_news,
 #custom-hyprland_news,
 #custom-kmp_news,
-#custom-theme_toggle {
+#custom-theme_switch,
+#custom-iconstheme_switch,
+#custom-waybar_style_toggle {
   margin-right: 2px;
   padding: 0 8px;
 /*old*/

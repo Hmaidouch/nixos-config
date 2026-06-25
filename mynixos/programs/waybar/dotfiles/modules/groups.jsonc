@@ -1,5 +1,12 @@
 {
-
+  "group/themes": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/theme_switch",
+      "custom/iconstheme_switch",
+      "custom/waybar_style_toggle"
+    ]
+  },
   "group/system": {
     "orientation": "horizontal",
     "drawer": {
@@ -22,14 +29,6 @@
       "custom/reddit_news",
       "custom/hyprland_news",
       "custom/kmp_news"
-    ]
-  },
-  "group/themes": {
-    "orientation": "horizontal",
-    "modules": [
-      "custom/theme_switch",
-      "custom/iconstheme_switch",
-      "custom/waybar_style_toggle"
     ]
   }
 }
