@@ -1,67 +1,35 @@
 {
-  "group/distro-group": {
+
+  "group/system": {
     "orientation": "horizontal",
     "drawer": {
       "transition-duration": 650,
       "transition-left-to-right": true
     },
     "modules": [
-      "custom/distro",
-      "custom/terminal",
-      "custom/code",
-      "custom/obsidian",
-      "custom/office",
-      "custom/files",
-      "custom/spotify",
-      "custom/browser"
-    ]
-  },
-  "group/storage": {
-    "orientation": "horizontal",
-    "modules": [
-      "disk",
+      "temperature",
+      "cpu",
       "memory"
     ]
   },
-  "group/system": {
-    "orientation": "horizontal",
-    "modules": [
-      "temperature",
-      "cpu"
-    ]
-  },
-  "group/audio": {
+  "group/news": {
     "orientation": "horizontal",
     "drawer": {
       "transition-duration": 650,
-      "transition-left-to-right": false
+      "transition-left-to-right": true
     },
     "modules": [
-      "pulseaudio",
-      "pulseaudio/slider",
-      "pulseaudio#microphone"
+      "custom/reddit_news",
+      "custom/hyprland_news",
+      "custom/kmp_news"
     ]
   },
-  "group/connections": {
+  "group/themes": {
     "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 500,
-      "transition-left-to-right": false
-    },
     "modules": [
-      "network",
-      "bluetooth"
-    ]
-  },
-  "group/tray-group": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 500,
-      "transition-left-to-right": false
-    },
-    "modules": [
-      "custom/tray-arrow",
-      "tray"
+      "custom/theme_switch",
+      "custom/iconstheme_switch",
+      "custom/waybar_style_toggle"
     ]
   }
 }

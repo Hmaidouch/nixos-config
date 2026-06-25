@@ -28,11 +28,22 @@ CHOICE=$(echo -e "$OPTIONS" | rofi -dmenu -i -p "Control Center" -config "$HOME/
 case "$CHOICE" in
     "Shot")
         # أمر لقطة الشاشة (مع تحديد المنطقة)
-        grim -g "$(slurp)" ~/Pictures/$(date +%s_screenshot.png)
+        niri msg action screenshot
+        #grim -g "$(slurp)" ~/Pictures/$(date +%s_screenshot.png)
         ;;
     "Lock")
-        # أمر قفل الشاشة
-        hyprlock
+        swaylock \
+          --screenshots \
+          --clock \
+          --timestr="%H:%M" \
+          --datestr="%d/%m/%Y" \
+          --font="JetBrains Mono" \
+          --font-size=150 \
+          --indicator-radius=300 \
+          --indicator \
+          --effect-blur=7x5 \
+          --effect-vignette=0.5:0.5 \
+          --effect-greyscale
         ;;
     "Shutdown")
         # أمر الإغلاق

@@ -1,0 +1,19 @@
+{
+    "custom/theme_switch" : {
+      "format" : "🎨",
+      "tooltip" : true,
+      "tooltip-format" : "Change GTK Theme",
+      "on-click" : "bash ~/.config/hypr/scripts/themes/theme_switch.sh"
+    },
+    "custom/iconstheme_switch" : {
+      "format" : "🎨",
+      "tooltip" : true,
+      "tooltip-format" : "Change GTK Icone Theme",
+      "on-click" : "bash ~/.config/hypr/scripts/themes/iconstheme_switch.sh"
+    },
+    "custom/waybar_style_toggle" : {
+      "format" : "󰹞",
+      "on-click" : "bash ~/.config/hypr/scripts/waybar_style.sh",
+      "tooltip" : false
+    }
+}

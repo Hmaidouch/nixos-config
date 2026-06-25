@@ -1,10 +1,10 @@
-/**@import "tokens/colors.css";
-@import "tokens/state.css";
-@import "tokens/workspace.css";
+@import "tokens/colors.css";
+/*@import "tokens/state.css";*/
+/*@import "tokens/workspace.css";*/
 @import "tokens/widget.css";
-@import "tokens/batt-clock.css";
-@import "tokens/slider.css";
-**/
+/*@import "tokens/batt-clock.css";*/
+/*@import "tokens/slider.css";*/
+
 @import "tokens/oldstyle.css";
 
 
@@ -116,14 +116,9 @@
      /* الإعداد العام لكل الوحدات لتكبير الخط */
      #clock,
      #clock.date,
-     #cpu,
-     #memory,
      #pulseaudio,
      #language,
-     #custom-theme_toggle,
-     #custom-reddit_news,
-     #custom-hyprland_news,
-     #custom-kmp_news,
+     
      #network {
        font-size: 16px;
        /* تكبير الخط هنا، يمكنك زيادته إلى 18px إذا أردت */
@@ -142,19 +137,7 @@
        padding: 0 8px;
      }
 
-     #custom-theme_toggle {
-       color: @dark-light-color;
-     }
 
-     #cpu {
-       /* color: #c6a0f6;*/
-       color: @cpu-color;
-     }
-
-     #memory {
-       /*  color: #f5a97f;*/
-       color: @memory-color;
-     }
 
      #clock {
        /*  color: #eed49f; */
@@ -181,14 +164,3 @@
        color: @language-color;
      }
 
-     #custom-reddit_news {
-       color: @reddit_news-color;
-     }
-
-     #custom-hyprland_news {
-       color: @hyprland_news-color;
-     }
-
-     #custom-kmp_news {
-       color: @kmp_news-color;
-     }

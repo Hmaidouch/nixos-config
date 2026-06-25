@@ -1,0 +1,22 @@
+{
+    "custom/reddit_news" : {
+      "format" : "",
+      "tooltip" : true,
+      "tooltip-format" : "Click to see latest NixOS news",
+      "on-click" : "bash ~/.config/hypr/scripts/news/nixos-news.sh"
+    },
+
+    "custom/hyprland_news" : {
+      "format" : "",
+      "tooltip" : true,
+      "tooltip-format" : "Click to see latest NixHyprlandOS news",
+      "on-click" : "bash ~/.config/hypr/scripts/news/hyprland-news.sh",
+    },
+
+    "custom/kmp_news" : {
+      "format" : "",
+      "tooltip" : true,
+      "tooltip-format" : "Click to see latest KMP news",
+      "on-click" : "bash ~/.config/hypr/scripts/news/kmp-news.sh"
+    }
+}

@@ -1,6 +1,6 @@
 {
   "cpu": {
-    "tooltip": false,
+    //"tooltip": false,
     "interval": 10,
     "format": "󰻠",
     "format-alt": "󰻠 <span size='11pt'>{usage}%</span>",
@@ -10,7 +10,7 @@
     }
   },
   "temperature": {
-    "tooltip": false,
+    //"tooltip": false,
     "interval": 10,
     "thermal-zone": 8,
     "critical-threshold": 80,
@@ -22,5 +22,8 @@
       "",
       ""
     ]
+  },
+  "memory": {
+    "format" : "󰘚 {percentage}%"
   }
 }

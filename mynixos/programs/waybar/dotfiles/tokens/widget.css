@@ -1,4 +1,5 @@
 @import "colors.css";
+@import "oldstyle.css";
 
 /*======= MODULE INDEPENDENT =======*/
 #distro-group {
@@ -61,7 +62,8 @@
 #audio,
 #connections,
 #system,
-#storage {
+#storage,
+#news {
   margin: 4px 5px;
   padding: 6px 6px;
   background-color: @surface_container;
@@ -73,11 +75,39 @@
 #memory,
 #cpu,
 #temperature,
-#bluetooth {
+#bluetooth,
+#custom-reddit_news,
+#custom-hyprland_news,
+#custom-kmp_news,
+#custom-theme_toggle {
   margin-right: 2px;
   padding: 0 8px;
+/*old*/
+/* font-size: 16px;
+  font-weight: 500;
+  padding: 0 10px; */
+}
+#custom-reddit_news {
+  color: @reddit_news-color;
 }
 
+#custom-hyprland_news {
+  color: @hyprland_news-color;
+}
+
+#custom-kmp_news {
+  color: @kmp_news-color;
+}
+/*old*/
+#cpu {
+  color: @cpu-color;
+}
+#memory {
+  color: @memory-color;
+}
+#custom-theme_toggle {
+  color: @dark-light-color;
+}
 #network {
   padding: 0px 10px 0px 4px;
 }
