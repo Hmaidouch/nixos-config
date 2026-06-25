@@ -113,11 +113,65 @@
 }
 #network {
   padding: 0px 10px 0px 4px;
+  color: @network-color;
 }
-
+#network.disconnected {
+  color: #f38ba8;
+}
+  
 #pulseaudio {
   margin-right: 12px;
   margin-left: 8px;
+  color: @pulseaudio-color;
+}
+/*===== TASKBAR =====*/
+#taskbar button {
+  padding: 0 14px;
+  border-radius: 4px;
+}
+#taskbar button.active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/*======= PRAYER =======*/
+#custom-prayer {
+  font-family: "Vazirmatn", "Ubuntu", "sans-serif";
+  font-size: 14px;
+  font-weight: 500;
+  /* color: #89b4fa; */
+  /* color: #000000;*/
+  color: @custom-prayer-color;
+  padding: 0 8px;
+}
+
+/*======= LANGUAGE =======*/
+#custom-language {
+  /* color: #8bd5ca; */
+  color: @language-color;
+}
+
+/*======= LAUNCHER and control-panel =======*/
+#custom-control-panel {
+  padding: 0 12px;
+  border-radius: 4px;
+  font-size: 18px;
+/*  color: #c7d0e9;*/
+/*  color: #9bff3d;*/
+/*  color: #000000;  */
+  color: @custom-control-panel;
+}
+#custom-launcher {
+  padding: 0 12px;
+  border-radius: 4px;
+  font-size: 22px;
+/*  color: #ede2dc;*/
+/*  color: #000000;*/
+  color: @custom-launcher-color;
+}
+#custom-launcher:hover,
+#custom-control-panel:hover,
+#taskbar button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /*======= TRAY =======*/

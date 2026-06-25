@@ -1,9 +1,8 @@
 @import "tokens/colors.css";
-/*@import "tokens/state.css";*/
-/*@import "tokens/workspace.css";*/
+@import "tokens/state.css";
 @import "tokens/widget.css";
-/*@import "tokens/batt-clock.css";*/
-/*@import "tokens/slider.css";*/
+@import "tokens/clock.css";
+@import "tokens/slider.css";
 
 @import "tokens/oldstyle.css";
 
@@ -16,84 +15,13 @@
        color: @all-color;
      }
 
-     #custom-launcher {
-       padding: 0 12px;
-       border-radius: 4px;
-       font-size: 22px;
-       /*  color: #ede2dc;*/
-       /*  color: #000000;*/
-       color: @custom-launcher-color;
-     }
-
-     #custom-control-panel {
-       padding: 0 12px;
-       border-radius: 4px;
-       font-size: 18px;
-       /*  color: #c7d0e9;*/
-       /*  color: #9bff3d;*/
-       /*  color: #000000;  */
-       color: @custom-control-panel;
-     }
-
-     #custom-launcher:hover,
-     #custom-control-panel:hover,
-     #taskbar button:hover {
-       background-color: rgba(255, 255, 255, 0.2);
-     }
-
      window#waybar {
        /*  background-color: rgba(45, 47, 59, 0.9);*/
        /* background-color: rgba(208, 229, 234, 0.8);  */
        background-color: @waybar-color
      }
 
-     #taskbar button {
-       padding: 0 14px;
-       border-radius: 4px;
-     }
-
-     #taskbar button.active {
-       background-color: rgba(255, 255, 255, 0.3);
-     }
-
-     #custom-show-desktop {
-       padding: 0 6px;
-       margin-right: 2px;
-       background: rgba(255, 255, 255, 0.05);
-       transition: background 0.2s;
-     }
-
-     #custom-show-desktop:hover {
-       background: rgba(255, 255, 255, 0.25);
-     }
-
-     #workspaces button {
-       padding: 0 8px;
-       transition: background-color 0.2s ease;
-       color: #cad3f5;
-       font-size: 16px;
-       /* ليناسب حجم الساعة الجديد */
-     }
-
-     #workspaces button.active {
-       color: #ed8796;
-       /* لون مميز للمساحة النشطة */
-       border-bottom: 2px solid #ed8796;
-     }
-
-     #workspaces button:hover {
-       background-color: rgba(255, 255, 255, 0.15);
-     }
-
-
-     #network.disconnected {
-       color: #f38ba8;
-       /* لون أحمر للتنبيه عند انقطاع النت */
-     }
-
-     #pulseaudio.muted {
-       color: #f8f8f2;
-     }
+ 
 
      /* تنسيق صندوق التنبيه (Tooltip) بالكامل */
      tooltip {
@@ -113,54 +41,5 @@
        color: #cad3f5;
      }
 
-     /* الإعداد العام لكل الوحدات لتكبير الخط */
-     #clock,
-     #clock.date,
-     #pulseaudio,
-     #language,
-     
-     #network {
-       font-size: 16px;
-       /* تكبير الخط هنا، يمكنك زيادته إلى 18px إذا أردت */
-       font-weight: 500;
-       padding: 0 10px;
-       /*  color: #000000;*/
-     }
 
-     #custom-prayer {
-       font-family: "Vazirmatn", "Ubuntu", "sans-serif";
-       font-size: 14px;
-       font-weight: 500;
-       /* color: #89b4fa; */
-       /* color: #000000;*/
-       color: @custom-prayer-color;
-       padding: 0 8px;
-     }
-
-
-
-     #clock {
-       /*  color: #eed49f; */
-       color: @clock-color;
-     }
-
-     #clock.date {
-       /* color: #ed8796;*/
-       color: @date-color;
-
-     }
-
-     #network {
-       color: @network-color;
-     }
-
-     #pulseaudio {
-       /*  color: #eed49f;*/
-       color: @pulseaudio-color;
-     }
-
-     #language {
-       /* color: #8bd5ca; */
-       color: @language-color;
-     }
 

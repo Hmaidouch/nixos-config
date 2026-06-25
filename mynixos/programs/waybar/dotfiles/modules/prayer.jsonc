@@ -1,0 +1,8 @@
+{
+    "custom/prayer" : {
+      "format" : "{}",
+      "exec" : "salat",
+      "interval" : 60,
+      "tooltip" : true
+    }
+}

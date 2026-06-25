@@ -1,0 +1,15 @@
+{
+    "wlr/taskbar" : {
+      "format" : "{icon}",
+      "icon-size" : 28,
+      "tooltip-format" : "{title}",
+      "on-click" : "activate",
+      "on-click-right" : "close",
+      "ignore-list" : [
+        "rofi"
+      ],
+      "app_ids-mapping" : {
+        "firefoxdeveloperedition" : "firefox-developer-edition"
+      }
+    }
+}

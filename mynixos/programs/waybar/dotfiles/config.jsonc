@@ -1,7 +1,3 @@
-/*
- * @author Muhammad Haikal Hakim
- * @repository https://github.com/haikal-hakim/athena
- */
 {
   "layer": "top",
   "height": 32,
@@ -13,30 +9,34 @@
     "./modules/groups.jsonc",
     "./modules/system.jsonc",
     "./modules/news.jsonc",
-    "./modules/themes.jsonc"
+    "./modules/themes.jsonc",
+    "./modules/audio.jsonc",
+    "./modules/clock.jsonc",
+    "./modules/connections.jsonc",
+    "./modules/tray-notif.jsonc",
+    "./modules/taskbar.jsonc",
+    "./modules/prayer.jsonc",
+    "./modules/language.jsonc",
+    "./modules/launcher.jsonc",
+    "./modules/control_panel.jsonc"
   ],
   "modules-left": [
-    "custom/launcher",
-    "custom/workspaces",
-    "custom/show-desktop"
+    "custom/launcher"
   ],
   "modules-center": [
     "wlr/taskbar"
   ],
   "modules-right": [
     "custom/prayer",
-   // "custom/waybar_style_toggle",
-  //  "custom/theme_switch",
-  //  "custom/iconstheme_switch",
-   // "custom/waybar_color_toggle",
     "group/themes",
     "group/system",
     "group/news",
     "custom/language",
     "clock",
     "clock#date",
-    "network",
-    "pulseaudio",
+    "group/connections",
+    "group/audio",
+    "group/tray-group",
     "custom/control-panel"
   ]
 }

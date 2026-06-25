@@ -1,28 +1,43 @@
 {
   "pulseaudio": {
-    "format": "{icon}",
+    "format": "{icon} {volume}",
     "format-muted": "",
     "format-icons": {
       "headphone": "󰋋",
       "headset": "󰋋",
       "hands-free": "󰋋",
       "default": [
-        "",
-        "",
-        ""
+        "󰖀", 
+        "󰕾"
       ]
     },
     "on-click": "pavucontrol",
     "tooltip-format": "Output: {volume}%"
   },
-  "pulseaudio#microphone": {
-    "format": "{format_source}",
-    "format-source": "",
-    "format-source-muted": ""
-  },
+//  "pulseaudio#microphone": {
+ //   "format": "{format_source}",
+ //   "format-source": "",
+ //   "format-source-muted": ""
+ // },
   "pulseaudio/slider": {
     "min": 0,
     "max": 100,
     "orientation": "horizontal"
   }
+
+  //old audio
+   //   "pulseaudio": {
+  //    "format" : "{icon} {volume}",
+   //   "format-muted" : "󰝟 Muted",
+   //   "on-click" : "pavucontrol & sleep 10 && pkill pavucontrol",
+   //   "format-icons" : {
+   //     "headphone" : "󰋋",
+   //     "hands-free" : "󰋎",
+   //     "headset" : "󰋎",
+    //    "phone" : "󰏲",
+   //     "portable" : "󰏲",
+   //     "car" : "󰄄",
+   //     "default" : [ "󰖀", "󰕾" ]
+  //    }
+  //  },
 }

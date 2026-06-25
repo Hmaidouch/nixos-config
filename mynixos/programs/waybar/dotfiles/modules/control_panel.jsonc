@@ -1,0 +1,7 @@
+{
+    "custom/control-panel": {
+      "format" : "󰤆",
+      "on-click" : "control_menu",
+      "tooltip" : false
+    }
+}
