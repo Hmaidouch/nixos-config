@@ -46,6 +46,7 @@
     unzip
     posy-cursors
     swaylock-effects
+    swaynotificationcenter
 
     pkgs.polkit_gnome
 
