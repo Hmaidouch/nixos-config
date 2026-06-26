@@ -6,12 +6,24 @@
     //  "on-click" : "hyprctl switchxkblayout all next"
    // }
 
-    "custom/language" : {
-     // "exec": "niri msg --json outputs | jq -r '.[0].kb_current_layout_name' | sed 's/Arabic/AR/' | sed 's/French/FR/'",
-      "interval": 1,
-      "format": " {}",
-      "format-ar" : "AR",
-      "format-fr" : "FR",
-      "on-click": "niri msg action switch-layout next"
-    }
+  //  "custom/language" : {
+      //"exec": "niri msg --json outputs | jq -r '.[0].kb_current_layout_name' | sed 's/Arabic/AR/' | sed 's/French/FR/'",
+//"exec": "niri msg --json outputs | jq -r 'if type == \"array\" then .[0] else .[keys[0]] end | .kb_current_layout_name' 2>/dev/null | sed 's/Arabic/AR/' | sed 's/French/FR/'",
+   //   "interval": 1,
+  //    "format": " {}",
+    //  "format-ar" : "AR",
+   //   "format-fr" : "FR",
+      //"on-click": "niri msg action switch-layout next"
+    //}
+  "niri/language": {
+    "format": " {short}",
+    "on-click": "niri msg action switch-layout next"
+  },
+  
+  "hyprland/language" : {
+    "format": " {}",
+    "format-ar": "AR",
+    "format-fr": "FR",
+    "on-click": "hyprctl switchxkblayout all next"
+  }
 }

@@ -12,9 +12,10 @@
   "temperature": {
     //"tooltip": false,
     "interval": 10,
-    "thermal-zone": 8,
+   // "thermal-zone": 8,
     "critical-threshold": 80,
     "format": "{icon}",
+  //  "format": "{temperatureC}°C "
     "format-alt": "{icon} <span size='11pt'>{temperatureC}°C</span>",
     "format-critical": "<span size='12pt'>󱗗 </span><span size='11pt'>{temperatureC}°C</span>",
     "format-icons": [

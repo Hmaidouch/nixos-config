@@ -11,6 +11,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
+    nerd-fonts.symbols-only
     jetbrains-mono # تم إضافته هنا ليعمل خط الـ Monospace
     corefonts      # يوفر Times New Roman
     vista-fonts    # تم إضافته هنا ليوفر Segoe UI

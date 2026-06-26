@@ -55,6 +55,8 @@ in
         package = pkgs.tela-circle-icon-theme;
       };
     };
+
+    services.swaync.enable = true;
   };
  
 
