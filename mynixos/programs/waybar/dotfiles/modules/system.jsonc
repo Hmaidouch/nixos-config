@@ -12,21 +12,25 @@
   "temperature": {
     //"tooltip": false,
     "interval": 10,
-   // "thermal-zone": 8,
-    "critical-threshold": 80,
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    // "thermal-zone": 8,
+    "critical-threshold": 90,
     "format": "{icon}",
-  //  "format": "{temperatureC}°C "
+    //  "format": "{temperatureC}°C "
     "format-alt": "{icon} <span size='11pt'>{temperatureC}°C</span>",
     "format-critical": "<span size='12pt'>󱗗 </span><span size='11pt'>{temperatureC}°C</span>",
     "format-icons": [
       "",
+      "",
+      "",
       "",
+      "",
       ""
     ]
   },
-//  "memory": {
-//    "format" : "󰘚 {percentage}%"
-//  }
+  //  "memory": {
+  //    "format" : "󰘚 {percentage}%"
+  //  }
   "memory": {
     "tooltip": false,
     "interval": 15,

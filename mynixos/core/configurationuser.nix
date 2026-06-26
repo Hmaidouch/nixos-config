@@ -50,6 +50,8 @@
 
     pkgs.polkit_gnome
 
+    lm_sensors
+
     curl
     jq
     #swaynotificationcenter
