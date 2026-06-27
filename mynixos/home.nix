@@ -41,6 +41,8 @@ in
       (pkgs.writeShellScriptBin "rofi_show" (builtins.readFile ./scripts/rofi_show.sh))
       (pkgs.writeShellScriptBin "control_menu" (builtins.readFile ./scripts/control_menu.sh))
       (pkgs.writeShellScriptBin "salat" (builtins.readFile ./scripts/salat.sh))
+      (pkgs.writeShellScriptBin "theme_switch" (builtins.readFile ./scripts/themes/theme_switch.sh))
+      (pkgs.writeShellScriptBin "iconstheme_switch" (builtins.readFile ./scripts/themes/iconstheme_switch.sh))
     ];
 
 # أو باستخدام الموديول الجاهز لـ Home Manager (وهو الأجمل):

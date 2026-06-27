@@ -7,8 +7,7 @@
     },
     "modules": [
       "custom/theme_switch",
-      "custom/iconstheme_switch",
-      "custom/waybar_style_toggle"
+      "custom/iconstheme_switch"
     ]
   },
   "group/system": {
