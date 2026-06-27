@@ -60,14 +60,21 @@
 
 /*======= MODULE CAPSUL =======*/
 #audio,
-#connections,
 #system,
 #news,
 #themes,
-#language, 
+#language,
 #custom-prayer {
   margin: 3px 2px;
   padding: 4px 6px;
+  background-color: @surface_container;
+  border-radius: 20px;
+  color: @secondary_fixed_dim;
+}
+
+#connections {
+  margin: 4px 2px;
+  padding: 0px 2px 0px 8px;
   background-color: @surface_container;
   border-radius: 20px;
   color: @secondary_fixed_dim;
@@ -86,13 +93,14 @@
 #custom-waybar_style_toggle,
 #custom-prayer {
   margin: 3px 2px;
- /* margin-right: 2px;*/
+  /* margin-right: 2px;*/
   padding: 0 8px;
-/*old*/
-/* font-size: 16px;
+  /*old*/
+  /* font-size: 16px;
   font-weight: 500;
   padding: 0 10px; */
 }
+
 #custom-reddit_news {
   color: @reddit_news-color;
 }
@@ -104,47 +112,54 @@
 #custom-kmp_news {
   color: @kmp_news-color;
 }
+
 /*old*/
 #cpu {
   color: @cpu-color;
 }
+
 #memory {
   color: @memory-color;
 }
+
 #custom-theme_toggle {
   color: @dark-light-color;
 }
+
 #network {
   padding: 0px 10px 0px 4px;
   color: @network-color;
 }
+
 #network.disconnected {
   color: #f38ba8;
 }
-  
+
 #pulseaudio {
   margin-right: 8px;
   margin-left: 8px;
   color: @pulseaudio-color;
 }
+
 /*===== TASKBAR =====*/
 #taskbar button {
   padding: 0 14px;
   border-radius: 20px;
 }
+
 #taskbar button.active {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
 /*======= PRAYER =======*/
 #custom-prayer {
- font-family: "Vazirmatn", "Ubuntu", "sans-serif";
- /* font-size: 14px;
+  font-family: "Vazirmatn", "Ubuntu", "sans-serif";
+  /* font-size: 14px;
   font-weight: 500; */
   /* color: #89b4fa; */
   /* color: #000000;*/
   color: @custom-prayer-color;
-  
+
 }
 
 /*======= LANGUAGE =======*/
@@ -158,13 +173,14 @@
   margin: 4px 12px 4px 2px;
   padding: 0px 8px;
   border-radius: 20px;
- /* font-size: 18px; */
-/*  color: #c7d0e9;*/
-/*  color: #9bff3d;*/
-/*  color: #000000;  */
+  /* font-size: 18px; */
+  /*  color: #c7d0e9;*/
+  /*  color: #9bff3d;*/
+  /*  color: #000000;  */
   color: @custom-control-panel;
   background-color: @surface_container;
 }
+
 #custom-launcher {
   margin: 4px 2px 4px 12px;
   padding: 0px 8px;
@@ -172,6 +188,7 @@
   color: @custom-launcher-color;
   background-color: @surface_container;
 }
+
 #custom-launcher:hover,
 #custom-control-panel:hover,
 #taskbar button:hover {
@@ -181,6 +198,7 @@
 /*======= TRAY =======*/
 #tray-group {
   margin: 4px 5px;
+  padding: 0px 0px 0px 3px;
   background-color: @surface_container;
   border-radius: 20px;
 }
