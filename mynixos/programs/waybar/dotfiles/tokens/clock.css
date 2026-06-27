@@ -1,5 +1,4 @@
 @import "colors.css";
-@import "oldstyle.css";
 
 #battery {
   margin: 4px 5px;
@@ -17,12 +16,13 @@
   border-radius: 20px;
   color: @secondary_fixed_dim;
 }
+
 #clock {
-       /*  color: #eed49f; */
+  /*  color: #eed49f; */
   color: @clock-color;
 }
 
 #clock.date {
-       /* color: #ed8796;*/
+  /* color: #ed8796;*/
   color: @date-color;
 }
