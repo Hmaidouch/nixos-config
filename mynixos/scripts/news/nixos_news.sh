@@ -2,6 +2,16 @@
 
 # --- الإعدادات ---
 #
+# تحديد مسار ملف البيئة (تأكد من كتابة المسار الكامل لملفك)
+ENV_FILE="$HOME/nixos-config/.env"
+
+if [ -f "$ENV_FILE" ]; then
+    source "$ENV_FILE"
+    API_KEY="$GEMINI_API_KEY"
+else
+    # خيار بديل إذا كان السكريبت يعمل كخدمة نظام لا تصل للمجلد
+    API_KEY=$(cat $HOME/.config/gemini_api.txt 2>/dev/null)
+fi
 MODEL="gemini-2.5-flash"
 # تأكد من أن هذا المسار موجود وصحيح
 CACHE_BASE="$HOME/.cache/waybar/reddit_ai/nixos"

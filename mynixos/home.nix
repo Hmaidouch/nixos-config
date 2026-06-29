@@ -92,6 +92,12 @@ in
       galculator
       hyprpicker
 
+      # مستعرض نيمو
+  #nemo-with-extensions 
+  
+  # حزمة أدوات للتحكم اليدوي ومراقبة الأقراص الرسومية (ممتازة مع Nemo)
+  gnome-disk-utility
+
     ];
 
 # أو باستخدام الموديول الجاهز لـ Home Manager (وهو الأجمل):

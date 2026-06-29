@@ -37,6 +37,17 @@
     };
   };
 
+  services = {
+  # 1. تفعيل خدمة gvfs المسؤول الأساسي في بيئات الـ Gnome/GTK عن قراءة الفلاشات في Nemo
+  gvfs.enable = true;
+
+  # 2. تفعيل خدمة udisks2 لإدارة وتجهيز وتفكيك وسائط التخزين تلقائياً
+  udisks2.enable = true;
+
+  # 3. تفعيل الـ devmon (اختياري ولكنه ممتاز لعمل Mount تلقائي للفلاشة بمجرد إدخالها)
+  devmon.enable = true;
+};
+
   environment.systemPackages = with pkgs; [
     git
     curl
