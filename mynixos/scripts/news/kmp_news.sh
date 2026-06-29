@@ -2,7 +2,7 @@
 
 # --- الإعدادات ---
 #
-MODEL="gemini-2.5-flash-lite"
+MODEL="gemini-2.5-flash"
 # تأكد من أن هذا المسار موجود وصحيح
 CACHE_BASE="$HOME/.cache/waybar/reddit_ai/kmp"
 TITLE_FILE="$CACHE_BASE/titles.txt"
@@ -17,7 +17,7 @@ fetch_reddit_data() {
     local url="https://www.reddit.com/r/KotlinMultiplatform/new.json?limit=15"
     
     # استخدام User-Agent يحاكي متصفح فايرفوكس حقيقي
-    local response=$(curl -s -L -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0" "$url")
+    local response=$(curl -s -L -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0" "$url")
     
     if echo "$response" | jq -e '.data.children[0].data.title' > /dev/null 2>&1; then
         echo "$response" | jq -r '.data.children[].data.title' > "$TITLE_FILE.tmp"
@@ -53,7 +53,7 @@ choice=$(printf "%s\n" "${titles[@]}" | rofi -dmenu -i \
     -p " KotlinMultiplatform News" \
     -kb-custom-1 "MouseSecondary" \
     -mesg "󰍽 [يسار]: AI شرح  |  󰍽 [يمين]: فتح رابط" \
-    -config "$HOME/.config/rofi/themes/general_news.rasi")
+    -config "$HOME/.config/rofi/dotfiles/themes/general_news.rasi")
 
 exit_code=$?
 [ -z "$choice" ] && exit 0

@@ -1,22 +1,29 @@
 {
-    "custom/reddit_news" : {
+    "custom/niri_news" : {
+      "format" : "󰈸",
+      "tooltip" : true,
+      "tooltip-format" : "Click to see latest Niri news",
+      "on-click" : "niri_news"
+    },
+
+    "custom/nixos_news" : {
       "format" : "",
       "tooltip" : true,
       "tooltip-format" : "Click to see latest NixOS news",
-      "on-click" : "bash ~/.config/hypr/scripts/news/nixos-news.sh"
+      "on-click" : "nixos_news"
     },
 
     "custom/hyprland_news" : {
       "format" : "",
       "tooltip" : true,
       "tooltip-format" : "Click to see latest NixHyprlandOS news",
-      "on-click" : "bash ~/.config/hypr/scripts/news/hyprland-news.sh",
+      "on-click" : "hyprland_news"
     },
 
     "custom/kmp_news" : {
       "format" : "",
       "tooltip" : true,
       "tooltip-format" : "Click to see latest KMP news",
-      "on-click" : "bash ~/.config/hypr/scripts/news/kmp-news.sh"
+      "on-click" : "kmp_news"
     }
 }

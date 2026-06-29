@@ -36,13 +36,62 @@ in
     home.homeDirectory = "/home/benattia";
     home.stateVersion = "26.05";
 
-    home.packages = [
-      pkgs.rofi
-      (pkgs.writeShellScriptBin "rofi_show" (builtins.readFile ./scripts/rofi_show.sh))
-      (pkgs.writeShellScriptBin "control_menu" (builtins.readFile ./scripts/control_menu.sh))
-      (pkgs.writeShellScriptBin "salat" (builtins.readFile ./scripts/salat.sh))
-      (pkgs.writeShellScriptBin "theme_switch" (builtins.readFile ./scripts/themes/theme_switch.sh))
-      (pkgs.writeShellScriptBin "iconstheme_switch" (builtins.readFile ./scripts/themes/iconstheme_switch.sh))
+    home.packages = with pkgs; [
+      rofi
+      (writeShellScriptBin "rofi_show" (builtins.readFile ./scripts/rofi_show.sh))
+      (writeShellScriptBin "control_menu" (builtins.readFile ./scripts/control_menu.sh))
+      (writeShellScriptBin "salat" (builtins.readFile ./scripts/salat.sh))
+      (writeShellScriptBin "theme_switch" (builtins.readFile ./scripts/themes/theme_switch.sh))
+      (writeShellScriptBin "iconstheme_switch" (builtins.readFile ./scripts/themes/iconstheme_switch.sh))
+      #news :
+      (writeShellScriptBin "niri_news" (builtins.readFile ./scripts/news/niri_news.sh))
+      (writeShellScriptBin "hyprland_news" (builtins.readFile ./scripts/news/hyprland_news.sh))
+      (writeShellScriptBin "nixos_news" (builtins.readFile ./scripts/news/nixos_news.sh))
+      (writeShellScriptBin "kmp_news" (builtins.readFile ./scripts/news/kmp_news.sh))
+
+      firefox
+      vscode
+      alacritty
+      nemo
+      posy-cursors
+      swaylock-effects
+      swaynotificationcenter
+      jq
+
+      glib
+
+      libnotify
+  # تأكد أيضاً من وجود الأداوت الأخرى التي يستخدمها السكريبت:
+  zenity
+  wl-clipboard # لأمر wl-copy
+  coreutils    # لأمر fold
+   # ---- باقة الثيمات التي تريد تجريبها ----
+      matcha-gtk-theme        # ثيم Matcha (الموجود في سكريبتك)
+      tokyonight-gtk-theme    # ثيم طوكيو نايت الشهير
+      catppuccin-gtk          # ثيم Catppuccin الأنيق (متناسق مع Hyprland جداً)
+      gruvbox-gtk-theme       # ثيم جروف بوكس الدافئ
+      arc-theme               # ثيم Arc الكلاسيكي الخفيف
+    
+      # حزمة تابعة لأيقوناتك المفضلة لتكتمل التجربة
+      tela-circle-icon-theme
+
+      gnome-text-editor
+
+      # extract zip
+      unzip
+      file-roller
+      nemo-fileroller
+      # لتغطية معظم الصيغ المضغوطة
+      zip
+      p7zip
+      gnutar
+      gzip
+      bzip2
+      xz
+
+      galculator
+      hyprpicker
+
     ];
 
 # أو باستخدام الموديول الجاهز لـ Home Manager (وهو الأجمل):
@@ -54,7 +103,8 @@ in
       };
       iconTheme = {
         name = "Tela-circle-light";
-        package = pkgs.tela-circle-icon-theme;
+        #name = "breeze";
+        #package = pkgs.tela-circle-icon-theme;
       };
     };
 

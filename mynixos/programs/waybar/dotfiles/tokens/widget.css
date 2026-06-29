@@ -84,7 +84,8 @@
 #cpu,
 #temperature,
 #bluetooth,
-#custom-reddit_news,
+#custom-nixos_news,
+#custom-niri_news,
 #custom-hyprland_news,
 #custom-kmp_news,
 #custom-theme_switch,
@@ -100,14 +101,15 @@
   padding: 0 10px; */
 }
 
-#custom-reddit_news {
-  color: @reddit_news-color;
+#custom-niri_news {
+  color: @niri_news-color;
 }
-
+#custom-nixos_news {
+  color: @nixos_news-color;
+}
 #custom-hyprland_news {
   color: @hyprland_news-color;
 }
-
 #custom-kmp_news {
   color: @kmp_news-color;
 }

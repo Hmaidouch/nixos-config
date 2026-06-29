@@ -39,24 +39,11 @@
 
   environment.systemPackages = with pkgs; [
     git
-    firefox
-    vscode
-    alacritty
-    nemo
-    unzip
-    posy-cursors
-    swaylock-effects
-    swaynotificationcenter
-
-    pkgs.polkit_gnome
-
+    curl
+   # pkgs.polkit_gnome
     lm_sensors
 
-    curl
-    jq
-    #swaynotificationcenter
-  xkb-switch
-
+   
   ];
 
 }
