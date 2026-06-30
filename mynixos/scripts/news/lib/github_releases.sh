@@ -42,12 +42,19 @@ fetch_releases() {
 
     # إنشاء ملفات تستخدمها ui.sh
     echo "$response" |
-        jq -r '.[] |
-            if .prerelease
-            then "🧪 \(.tag_name) - \(.name)"
-            else "🚀 \(.tag_name) - \(.name)"
-            end' \
-        > "$TITLE_FILE"
+        jq -r '
+.[] |
+(if .prerelease
+ then "🧪"
+ else "🚀"
+ end)
++ " "
++ .published_at[0:10]
++ "  "
++ .tag_name
++ " - "
++ .name
+' > "$TITLE_FILE"
 
     echo "$response" |
         jq -r '.[].html_url' \

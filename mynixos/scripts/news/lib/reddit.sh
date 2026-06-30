@@ -46,8 +46,10 @@ fetch_reddit() {
     fi
 
     echo "$response" |
-        jq -r '.data[].title' \
-        > "$TITLE_FILE"
+        jq -r '
+.data[] |
+"\(.created_utc | strftime("%Y-%m-%d")) │ \(.title)"
+' > "$TITLE_FILE"
 
     echo "$response" |
         jq -r '.data[] | "https://reddit.com" + .permalink' \

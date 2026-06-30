@@ -43,9 +43,13 @@ fetch_commits() {
 
     # عناوين القائمة
     echo "$response" |
-        jq -r '.[] |
-            "📝 \(.commit.message | split("\n")[0])"' \
-        > "$TITLE_FILE"
+        jq -r '
+.[] |
+"📝 "
++ .commit.author.date[0:10]
++ " │ "
++ (.commit.message | split("\n")[0])
+' > "$TITLE_FILE"
 
     # روابط GitHub
     echo "$response" |

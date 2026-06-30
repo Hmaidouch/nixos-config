@@ -43,9 +43,11 @@ fetch_tags() {
 
     # أسماء الـ Tags
     echo "$response" |
-        jq -r '.[] |
-            "🏷 \(.name)"' \
-        > "$TITLE_FILE"
+        jq -r '
+.[] |
+"🏷 "
++ .name
+' > "$TITLE_FILE"
 
     # روابط GitHub الخاصة بالـ Tag
     echo "$response" |

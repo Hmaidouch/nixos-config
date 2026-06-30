@@ -42,12 +42,19 @@ fetch_issues() {
 
     # الملفات التي يحتاجها ui.sh
     echo "$response" |
-        jq -r '.[] |
-            if .state=="open"
-            then "🐞 #\(.number) - \(.title)"
-            else "✅ #\(.number) - \(.title)"
-            end' \
-        > "$TITLE_FILE"
+        jq -r '
+.[] |
+(if .state=="open"
+ then "🐞"
+ else "✅"
+ end)
++ " "
++ .created_at[0:10]
++ " │  #"
++ (.number|tostring)
++ " - "
++ .title
+' > "$TITLE_FILE"
 
     echo "$response" |
         jq -r '.[].html_url' \
