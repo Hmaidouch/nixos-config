@@ -23,21 +23,23 @@ mkdir -p "$CACHE_BASE"
 
 # وظيفة جلب البيانات مع هوية متصفح قوية
 fetch_reddit_data() {
-    local target_file=$1
-    local url="https://www.reddit.com/r/NixOS/new.json?limit=15"
+    #local url="https://www.reddit.com/r/NixOS/new.json?limit=15"
+    local url="https://api.pullpush.io/reddit/search/submission/?subreddit=NixOS&size=15&sort=desc"
+
     
     # استخدام User-Agent يحاكي متصفح فايرفوكس حقيقي
-    local response=$(curl -s -L -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0" "$url")
+    local response=$(curl -s "$url")
     
-    if echo "$response" | jq -e '.data.children[0].data.title' > /dev/null 2>&1; then
-        echo "$response" | jq -r '.data.children[].data.title' > "$TITLE_FILE.tmp"
-        echo "$response" | jq -r '.data.children[] | "https://reddit.com" + .data.permalink' > "$URL_FILE.tmp"
-        mv "$TITLE_FILE.tmp" "$TITLE_FILE"
-        mv "$URL_FILE.tmp" "$URL_FILE"
-        return 0
-    else
-        return 1
+    if [ -n "$response" ] && echo "$response" | jq '.' >/dev/null 2>&1; then
+        if echo "$response" | jq -e '.data[0].title' > /dev/null 2>&1; then
+            echo "$response" | jq -r '.data[].title' > "$TITLE_FILE.tmp"
+            echo "$response" | jq -r '.data[] | "https://reddit.com" + .permalink' > "$URL_FILE.tmp"
+            mv "$TITLE_FILE.tmp" "$TITLE_FILE"
+            mv "$URL_FILE.tmp" "$URL_FILE"
+            return 0
+        fi
     fi
+    return 1
 }
 
 # 1. التحقق من وجود الكاش أو تحديثه
@@ -63,7 +65,7 @@ choice=$(printf "%s\n" "${titles[@]}" | rofi -dmenu -i \
     -p " NixOS News" \
     -kb-custom-1 "MouseSecondary" \
     -mesg "󰍽 [يسار]: AI شرح  |  󰍽 [يمين]: فتح رابط" \
-    -config "$HOME/.config/rofi/dotfiles/themes/general_news.rasi")
+    -config "$HOME/.config/rofi/themes/general_news.rasi")
 
 exit_code=$?
 [ -z "$choice" ] && exit 0

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # --- الإعدادات ---
-#
+
 # تحديد مسار ملف البيئة (تأكد من كتابة المسار الكامل لملفك)
 ENV_FILE="$HOME/nixos-config/.env"
 
@@ -14,7 +14,7 @@ else
 fi
 MODEL="gemini-2.5-flash"
 # تأكد من أن هذا المسار موجود وصحيح
-CACHE_BASE="$HOME/.cache/waybar/reddit_ai/kmp"
+CACHE_BASE="$HOME/.cache/waybar/reddit_ai/hyprland"
 TITLE_FILE="$CACHE_BASE/titles.txt"
 URL_FILE="$CACHE_BASE/urls.txt"
 CACHE_MINUTES=60
@@ -23,7 +23,7 @@ mkdir -p "$CACHE_BASE"
 
 # وظيفة جلب البيانات مع هوية متصفح قوية
 fetch_reddit_data() {
-    local url="https://api.pullpush.io/reddit/search/submission/?subreddit=KotlinMultiplatform&size=15&sort=desc"
+    local url="https://api.pullpush.io/reddit/search/submission/?subreddit=Hyprland&size=15&sort=desc&sort_type=created_utc"
     local response=$(curl -s "$url")
     
     if [ -n "$response" ] && echo "$response" | jq '.' >/dev/null 2>&1; then
@@ -40,7 +40,7 @@ fetch_reddit_data() {
 
 # 1. التحقق من وجود الكاش أو تحديثه
 if [ ! -s "$TITLE_FILE" ]; then
-    notify-send -t 3000 "KotlinMultiplatform News" "جاري محاولة التحميل الأولية..."
+    notify-send -t 3000 "Hyprland News" "جاري محاولة التحميل الأولية..."
     if ! fetch_reddit_data; then
         notify-send -t 5000 "خطأ" "فشل التحميل: رديت رفض الطلب أو لا يوجد إنترنت"
         exit 1
@@ -58,7 +58,7 @@ mapfile -t urls < "$URL_FILE"
 
 # عرض Rofi
 choice=$(printf "%s\n" "${titles[@]}" | rofi -dmenu -i \
-    -p " KotlinMultiplatform News" \
+    -p " Hyprland News" \
     -kb-custom-1 "MouseSecondary" \
     -mesg "󰍽 [يسار]: AI شرح  |  󰍽 [يمين]: فتح رابط" \
     -config "$HOME/.config/rofi/themes/general_news.rasi")
@@ -104,23 +104,23 @@ else
         fi
     fi
 
-    # 1. نسخ النص الأصلي للحافظة (بدون وسوم)
-   # printf "%s\n" "$RESPONSE" | wl-copy
+# 1. نسخ النص الأصلي للحافظة (بدون وسوم)
+
+#FORMATTED=$(echo "$RESPONSE" | fold -s -w 130)
 
     # 2. إضافة وسم RTL وتنسيق العرض في Rofi
     # استخدمنا dir='rtl' لإصلاح قلب الكلمات الإنجليزية داخل الجمل العربية
-   # RESPONSE_RTL="<span dir='rtl' font_desc='Vazirmatn 12'>$RESPONSE</span>"
+ #   RESPONSE_RTL="<span dir='rtl' font_desc='Vazirmatn 12'>$FORMATTED</span>"
 
-  #  printf "%s\n" "$RESPONSE_RTL" | rofi -dmenu -i -p "🤖 AI Analysis" \
-     #   -config "$HOME/.config/rofi/themes/ai_news.rasi" \
-      #  -theme-str 'window {width: 800px; height: 800px;} listview {lines: 20; fixed-height: false;}'
+ #   printf "%s\n" "$RESPONSE_RTL" | rofi -dmenu -i -p "🤖 AI Analysis" \
+ #       -config "$HOME/.config/rofi/themes/ai_news.rasi" \
+ #       -theme-str 'window {width: 54%; height: 90%;} listview {lines: 50; fixed-height: false;}'
 
-   ## FORMATTED=$(echo "$RESPONSE" | fold -s -w 120)
+   # FORMATTED=$(printf "%s" "$RESPONSE" | fold -s -w 120)
 #printf "%s\n" "$FORMATTED" | rofi -dmenu -p "🤖 AI Analysis" -config "$HOME/.config/rofi/themes/ai_news.rasi" -theme-str 'window {width: 50%; height: 90%;} listview {lines: 18;}'
 
 printf "%s\n" "$RESPONSE" | wl-copy
 
     # عرض النص في صندوق معلومات Zenity
     printf "%s" "$RESPONSE" | zenity --text-info --title="AI Analysis" --width=700 --height=600 --font="Vazirmatn 14"
-
 fi

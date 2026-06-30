@@ -36,6 +36,8 @@ in
     home.homeDirectory = "/home/benattia";
     home.stateVersion = "26.05";
 
+    
+
     home.packages = with pkgs; [
       rofi
       (writeShellScriptBin "rofi_show" (builtins.readFile ./scripts/rofi_show.sh))
@@ -45,7 +47,10 @@ in
       (writeShellScriptBin "iconstheme_switch" (builtins.readFile ./scripts/themes/iconstheme_switch.sh))
       #news :
       (writeShellScriptBin "niri_news" (builtins.readFile ./scripts/news/niri_news.sh))
-      (writeShellScriptBin "hyprland_news" (builtins.readFile ./scripts/news/hyprland_news.sh))
+     # (writeShellScriptBin "hyprland_news" (builtins.readFile ./scripts/news/hyprland_news.sh))
+      (writeShellScriptBin "hyprland_news" ''
+  exec "$HOME/.local/share/news/hyprland_news.sh"
+'')
       (writeShellScriptBin "nixos_news" (builtins.readFile ./scripts/news/nixos_news.sh))
       (writeShellScriptBin "kmp_news" (builtins.readFile ./scripts/news/kmp_news.sh))
 
@@ -57,6 +62,8 @@ in
       swaylock-effects
       swaynotificationcenter
       jq
+
+      localsend
 
       glib
 
