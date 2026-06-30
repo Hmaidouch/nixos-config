@@ -46,13 +46,11 @@ in
       (writeShellScriptBin "theme_switch" (builtins.readFile ./scripts/themes/theme_switch.sh))
       (writeShellScriptBin "iconstheme_switch" (builtins.readFile ./scripts/themes/iconstheme_switch.sh))
       #news :
-      (writeShellScriptBin "niri_news" (builtins.readFile ./scripts/news/niri_news.sh))
      # (writeShellScriptBin "hyprland_news" (builtins.readFile ./scripts/news/hyprland_news.sh))
-      (writeShellScriptBin "hyprland_news" ''
-  exec "$HOME/.local/share/news/hyprland_news.sh"
-'')
-      (writeShellScriptBin "nixos_news" (builtins.readFile ./scripts/news/nixos_news.sh))
-      (writeShellScriptBin "kmp_news" (builtins.readFile ./scripts/news/kmp_news.sh))
+      (writeShellScriptBin "hyprland_news" '' exec "$HOME/.local/share/news/hyprland_news.sh" '')
+      (writeShellScriptBin "niri_news" '' exec "$HOME/.local/share/news/niri_news.sh" '')
+      (writeShellScriptBin "nixos_news" '' exec "$HOME/.local/share/news/nixos_news.sh" '')
+      (writeShellScriptBin "kmp_news" '' exec "$HOME/.local/share/news/kmp_news.sh" '')
 
       firefox
       vscode
@@ -99,12 +97,8 @@ in
       galculator
       hyprpicker
 
-      # مستعرض نيمو
-  #nemo-with-extensions 
-  
-  # حزمة أدوات للتحكم اليدوي ومراقبة الأقراص الرسومية (ممتازة مع Nemo)
-  gnome-disk-utility
 
+      vlc
     ];
 
 # أو باستخدام الموديول الجاهز لـ Home Manager (وهو الأجمل):

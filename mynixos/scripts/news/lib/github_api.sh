@@ -77,7 +77,7 @@ github_issues() {
 # ------------------------------------------------------------
 
 github_commits() {
-
+    
     github_get "/repos/${GITHUB_OWNER}/${GITHUB_REPO}/commits?per_page=20"
 
 }

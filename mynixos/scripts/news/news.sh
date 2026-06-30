@@ -19,10 +19,13 @@ mkdir -p "$CACHE_BASE"
 source "$LIB_DIR/cache.sh"
 source "$LIB_DIR/ui.sh"
 source "$LIB_DIR/reddit.sh"
-source "$SCRIPT_DIR/lib/github_api.sh"
-source "$SCRIPT_DIR/lib/github_releases.sh"
-source "$SCRIPT_DIR/lib/github_issues.sh"
-source "$SCRIPT_DIR/lib/github_commits.sh"
+
+source "$LIB_DIR/github_api.sh"
+source "$LIB_DIR/github_releases.sh"
+source "$LIB_DIR/github_tags.sh"
+source "$LIB_DIR/github_commits.sh"
+source "$LIB_DIR/github_issues.sh"
+
 source "$LIB_DIR/gemini.sh"
 
 # ============================================================
@@ -44,61 +47,88 @@ if [[ -z "${API_KEY:-}" ]]; then
 fi
 
 # ============================================================
-# Choose Source
+# Source Labels
 # ============================================================
 
-SOURCE=$(printf "%s\n" \
-"📰 Reddit" \
-"🚀 GitHub Releases" \
-"📝 GitHub Commits" \
-"🐞 GitHub Issues" | rofi -dmenu \
+declare -A SOURCE_LABELS
+
+SOURCE_LABELS[reddit]="📰 Reddit"
+SOURCE_LABELS[releases]="🚀 GitHub Releases"
+SOURCE_LABELS[tags]="🏷 GitHub Tags"
+SOURCE_LABELS[commits]="📝 GitHub Commits"
+SOURCE_LABELS[issues]="🐞 GitHub Issues"
+
+# ============================================================
+# Build Menu
+# ============================================================
+
+MENU_ITEMS=()
+
+for source in "${NEWS_SOURCES[@]}"
+do
+    MENU_ITEMS+=("${SOURCE_LABELS[$source]}")
+done
+
+SOURCE=$(
+    printf "%s\n" "${MENU_ITEMS[@]}" |
+    rofi \
+        -dmenu \
         -i \
         -p "$PROJECT_ICON $PROJECT_NAME" \
-        -config "$HOME/.config/rofi/themes/general_news.rasi")
+        -config "$HOME/.config/rofi/themes/general_news.rasi"
+)
 
 [[ -z "$SOURCE" ]] && exit 0
 
 # ============================================================
-# Fetch data
+# Fetch Data
 # ============================================================
 
 case "$SOURCE" in
 
-"📰 Reddit")
+"${SOURCE_LABELS[reddit]}")
     fetch_reddit
     ;;
 
-"🚀 GitHub Releases")
+"${SOURCE_LABELS[releases]}")
     fetch_releases
     ;;
 
-"📝GitHub Commits")
+"${SOURCE_LABELS[tags]}")
+    fetch_tags
+    ;;
+
+"${SOURCE_LABELS[commits]}")
     fetch_commits
     ;;
 
-"🐞 GitHub Issues")
+"${SOURCE_LABELS[issues]}")
     fetch_issues
     ;;
 
 *)
     exit 0
     ;;
+
 esac
 
 # ============================================================
-# Read cache
+# Read Cache
 # ============================================================
 
 mapfile -t titles < "$TITLE_FILE"
 mapfile -t urls < "$URL_FILE"
 
-choice=$(printf "%s\n" "${titles[@]}" |
-    rofi -dmenu \
-    -i \
-    -p "$SOURCE" \
-    -kb-custom-1 MouseSecondary \
-    -mesg "🖱 Left : Gemini Summary    |    Right : Open Link" \
-    -config "$HOME/.config/rofi/themes/general_news.rasi")
+choice=$(
+    printf "%s\n" "${titles[@]}" |
+    rofi \
+        -dmenu \
+        -i \
+        -p "$SOURCE" \
+        -kb-custom-1 MouseSecondary \
+        -mesg "🖱 Left: Gemini Summary    |    Right: Open Link" \
+        -config "$HOME/.config/rofi/themes/general_news.rasi"
+)
 
 exit_code=$?
 
@@ -108,7 +138,10 @@ index=-1
 
 for i in "${!titles[@]}"
 do
-    [[ "${titles[$i]}" == "$choice" ]] && index=$i && break
+    if [[ "${titles[$i]}" == "$choice" ]]; then
+        index=$i
+        break
+    fi
 done
 
 [[ $index -lt 0 ]] && exit 1
@@ -134,8 +167,8 @@ summarize_url "$URL"
 printf "%s\n" "$SUMMARY" | wl-copy
 
 printf "%s" "$SUMMARY" | zenity \
-        --text-info \
-        --title="$PROJECT_NAME AI" \
-        --width=750 \
-        --height=650 \
-        --font="Vazirmatn 14"
+    --text-info \
+    --title="$PROJECT_NAME AI" \
+    --width=750 \
+    --height=650 \
+    --font="Vazirmatn 14"
