@@ -11,7 +11,8 @@ random_wallpaper() {
 
     local wallpapers=()
 
-    mapfile -t wallpapers < <(picker_list)
+   # mapfile -t wallpapers < <(picker_list)
+    mapfile -t wallpapers < <(list_wallpapers)
 
     [[ ${#wallpapers[@]} -eq 0 ]] && return 1
 

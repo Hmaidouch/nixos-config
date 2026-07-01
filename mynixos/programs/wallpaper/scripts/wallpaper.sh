@@ -13,6 +13,7 @@ LIB_DIR="$SCRIPT_DIR/lib"
 # Load libraries
 # ============================================================
 
+source "$LIB_DIR/wallpapers.sh"
 source "$LIB_DIR/cache.sh"
 source "$LIB_DIR/picker.sh"
 source "$LIB_DIR/random.sh"

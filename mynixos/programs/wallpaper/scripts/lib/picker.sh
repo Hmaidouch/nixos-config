@@ -23,17 +23,7 @@ IMAGE_EXTENSIONS=(
 # ------------------------------------------------------------
 
 picker_list() {
-
-    find "$WALLPAPER_DIR" \
-        -type f \
-        \( \
-            -iname "*.jpg"  -o \
-            -iname "*.jpeg" -o \
-            -iname "*.png"  -o \
-            -iname "*.webp" -o \
-            -iname "*.bmp" \
-        \) \
-        | sort
+    list_wallpapers
 }
 
 # ------------------------------------------------------------
