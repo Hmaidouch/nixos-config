@@ -1,0 +1,29 @@
+# ============================================================
+# Backend
+# ============================================================
+
+backend = "fastresize"
+
+# ============================================================
+# Palette
+# ============================================================
+
+color_space = "lab"
+
+palette = "dark"
+
+check_contrast = true
+
+# ============================================================
+# Templates
+# ============================================================
+
+[templates]
+
+waybar = { template = "templates/waybar.css", target = "~/.config/waybar/tokens/colors.css" }
+
+rofi = { template = "templates/rofi.rasi", target = "~/.config/rofi/colors.rasi" }
+
+swaync = { template = "templates/swaync.css", target = "~/.config/swaync/tokens/colors.css" }
+
+hyprland = { template = "templates/hyprland.conf", target = "~/.config/hypr/colors.conf" }

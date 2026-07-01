@@ -21,6 +21,9 @@ binds {
   "Super+C" { spawn "code";}
   "Super+E" { spawn "nemo";}
 
+// استدعاء wallpaper.sh
+  "Super+W" { spawn "wallpaper"; }
+
   // --- اختصارات حركة الفأرة العمودية والأفقية ---
     "Super+WheelScrollDown"      cooldown-ms=150 { focus-window-or-workspace-down; }
     "Super+WheelScrollUp"        cooldown-ms=150 { focus-window-or-workspace-up; }
@@ -34,3 +37,4 @@ binds {
 }
 
 spawn-at-startup "waybar"
+spawn-at-startup "awww-daemon"

@@ -50,9 +50,7 @@ fetch_releases() {
  end)
 + " "
 + .published_at[0:10]
-+ "  "
-+ .tag_name
-+ " - "
++ " | "
 + .name
 ' > "$TITLE_FILE"
 
