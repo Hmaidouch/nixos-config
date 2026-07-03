@@ -41,14 +41,16 @@ wallpaper_index() {
 
     local current="$1"
 
+    local wallpapers=()
+
     mapfile -t wallpapers < <(list_wallpapers)
 
     for i in "${!wallpapers[@]}"
     do
-        [[ "${wallpapers[$i]}" == "$current" ]] && {
+        if [[ "${wallpapers[$i]}" == "$current" ]]; then
             echo "$i"
             return 0
-        }
+        fi
     done
 
     return 1
@@ -61,6 +63,8 @@ wallpaper_index() {
 wallpaper_next() {
 
     local current="$1"
+
+    local wallpapers=()
 
     mapfile -t wallpapers < <(list_wallpapers)
 
@@ -87,6 +91,8 @@ wallpaper_next() {
 wallpaper_previous() {
 
     local current="$1"
+
+    local wallpapers=()
 
     mapfile -t wallpapers < <(list_wallpapers)
 

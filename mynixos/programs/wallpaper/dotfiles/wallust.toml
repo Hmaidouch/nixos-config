@@ -9,9 +9,7 @@ backend = "fastresize"
 # ============================================================
 
 color_space = "lab"
-
 palette = "dark"
-
 check_contrast = true
 
 # ============================================================
@@ -20,7 +18,7 @@ check_contrast = true
 
 [templates]
 
-waybar = { template = "templates/waybar.css", target = "~/.config/waybar/tokens/colors.css" }
+waybar = { template = "templates/waybar.css", target = "~/.config/waybar/wallust.css" }
 
 rofi = { template = "templates/rofi.rasi", target = "~/.config/rofi/colors.rasi" }
 

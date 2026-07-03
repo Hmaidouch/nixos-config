@@ -5,7 +5,6 @@
   "spacing": 4,
   "exclusive": true,
   "include": [
-    "./modules/modules.jsonc",
     "./modules/groups.jsonc",
     "./modules/system.jsonc",
     "./modules/news.jsonc",

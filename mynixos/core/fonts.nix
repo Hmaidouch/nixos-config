@@ -17,8 +17,6 @@
     vista-fonts    # تم إضافته هنا ليوفر Segoe UI
 
     nerd-fonts.fira-code
-    noto-fonts
-    noto-fonts-color-emoji
   ];
 
   fonts.fontconfig.defaultFonts = {

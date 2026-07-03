@@ -21,16 +21,44 @@ source "$LIB_DIR/awww.sh"
 source "$LIB_DIR/wallust.sh"
 
 # ============================================================
-# Choose wallpaper
+# Select wallpaper
 # ============================================================
 
-# لاختيار الخلفية من قائمة rofi
-#picker_choose || exit 0
-#IMAGE="$PICKED_WALLPAPER"
+case "${1:-random}" in
 
-# لاختيار الخلفية عشوائيا
-random_wallpaper || exit 0
-IMAGE="$RANDOM_WALLPAPER"
+    random)
+
+        random_wallpaper || exit 1
+        IMAGE="$RANDOM_WALLPAPER"
+        ;;
+
+    next)
+
+        IMAGE="$(wallpaper_next "$(cache_get_current)")"
+        ;;
+
+    previous)
+
+        IMAGE="$(wallpaper_previous "$(cache_get_current)")"
+        ;;
+
+    pick)
+
+        picker_choose || exit 0
+        IMAGE="$PICKED_WALLPAPER"
+        ;;
+
+    *)
+
+        echo "Usage:"
+        echo "  wallpaper random"
+        echo "  wallpaper next"
+        echo "  wallpaper previous"
+        echo "  wallpaper pick"
+        exit 1
+        ;;
+
+esac
 
 # ============================================================
 # Apply wallpaper

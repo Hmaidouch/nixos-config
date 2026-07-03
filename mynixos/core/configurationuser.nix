@@ -10,7 +10,7 @@
   users.users.benattia = {
     isNormalUser = true;
     description = "Benattia";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" "kvm"];
     shell = pkgs.zsh;
   };
 
@@ -63,5 +63,12 @@ networking.firewall = {
   allowedTCPPorts = [ 53317 ];
   allowedUDPPorts = [ 53317 ];
 };
+
+# تفعيل خدمة libvirtd لإدارة الآلات الافتراضية
+virtualisation.libvirtd.enable = true;
+
+# تفعيل ميزتي Spice و KVM لتسريع الرسوميات والصوت داخل الأنظمة الوهمية
+virtualisation.spiceUSBRedirection.enable = true;
+programs.virt-manager.enable = true;
   
 }

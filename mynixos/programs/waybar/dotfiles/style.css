@@ -1,3 +1,6 @@
+
+@import "tokens/wallust.css";
+
 @import "tokens/colors.css";
 @import "tokens/state.css";
 @import "tokens/widget.css";
@@ -20,7 +23,10 @@ window#waybar {
   /*  background-color: rgba(45, 47, 59, 0.9);*/
   /* background-color: rgba(208, 229, 234, 0.8);  */
   /* background-color: @waybar-color */
-  background: transparent
+  
+  /* من ملف wallust.css */
+   background-color: @waybar-background-color
+  /*background: transparent*/
 }
 
 

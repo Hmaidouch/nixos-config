@@ -76,7 +76,8 @@ in
       catppuccin-gtk          # ثيم Catppuccin الأنيق (متناسق مع Hyprland جداً)
       gruvbox-gtk-theme       # ثيم جروف بوكس الدافئ
       arc-theme               # ثيم Arc الكلاسيكي الخفيف
-    
+      orchis-theme
+      
       # حزمة تابعة لأيقوناتك المفضلة لتكتمل التجربة
       tela-circle-icon-theme
 
@@ -99,6 +100,9 @@ in
 
 
       vlc
+      opencode
+      virt-manager
+
 
     ];
 
@@ -107,7 +111,7 @@ in
       enable = true;
       theme = {
         name = "Orchis-Light";
-        package = pkgs.orchis-theme;
+        #package = pkgs.orchis-theme;
       };
       iconTheme = {
         name = "Tela-circle-light";

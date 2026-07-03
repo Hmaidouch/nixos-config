@@ -22,7 +22,17 @@ binds {
   "Super+E" { spawn "nemo";}
 
 // استدعاء wallpaper.sh
-  "Super+W" { spawn "wallpaper"; }
+  "Super+W" {
+    spawn "wallpaper" "random"
+}
+
+"Super+Shift+W" {
+    spawn "wallpaper" "previous"
+}
+
+"Super+Ctrl+W" {
+    spawn "wallpaper" "next"
+}
 
   // --- اختصارات حركة الفأرة العمودية والأفقية ---
     "Super+WheelScrollDown"      cooldown-ms=150 { focus-window-or-workspace-down; }
