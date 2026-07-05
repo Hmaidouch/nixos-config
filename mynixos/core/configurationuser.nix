@@ -54,6 +54,8 @@
    # pkgs.polkit_gnome
     lm_sensors
 
+    ntfs3g
+
    
   ];
 

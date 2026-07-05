@@ -33,7 +33,8 @@
       out = "loginctl terminate-user benattia";
       nrs = "sudo nixos-rebuild switch --flake .#benattia";
       nc = "sudo nix-collect-garbage -d";
-      mntd = "sudo mount /dev/sda1 /mnt/disk_d";
+      mntd = " sudo mount -t ntfs /dev/sda1 /mnt/disk_d";
+      #mntd = "sudo mount -t ntfs3 -o uid=1000,gid=100,dmask=022,fmask=133 /dev/sda1 /mnt/disk_d";
       cc = "clear";
 
       cdn = "cd ~/nixos-config";
