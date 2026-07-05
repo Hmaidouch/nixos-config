@@ -1,5 +1,5 @@
 
-@import "tokens/wallust.css";
+@import "/home/benattia/.cache/wallust/waybar.css";
 
 @import "tokens/colors.css";
 @import "tokens/state.css";
@@ -25,8 +25,8 @@ window#waybar {
   /* background-color: @waybar-color */
   
   /* من ملف wallust.css */
-  /* background-color: @waybar-background-color*/
-  background: transparent
+   background-color: @background;
+  /*background: transparent*/
 }
 
 

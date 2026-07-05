@@ -18,10 +18,6 @@ check_contrast = true
 
 [templates]
 
-waybar = { template = "templates/waybar.css", target = "~/.config/waybar/wallust.css" }
-
-rofi = { template = "templates/rofi.rasi", target = "~/.config/rofi/colors.rasi" }
-
-swaync = { template = "templates/swaync.css", target = "~/.config/swaync/tokens/colors.css" }
-
-hyprland = { template = "templates/hyprland.conf", target = "~/.config/hypr/colors.conf" }
+waybar = { template = "waybar.css", target = "/home/benattia/.cache/wallust/waybar.css" }
+swaync = { template = "swaync.css", target = "/home/benattia/.cache/wallust/swaync.css" }
+hyprland = { template = "hyprland.conf", target = "/home/benattia/.cache/wallust/hyprland.conf" }
