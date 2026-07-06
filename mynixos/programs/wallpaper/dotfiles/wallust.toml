@@ -18,6 +18,8 @@ check_contrast = true
 
 [templates]
 
+# waybar = { template = "waybar.css", target = "/home/benattia/.cache/wallust/waybar.css" }
+
 waybar = { template = "waybar.css", target = "/home/benattia/.cache/wallust/waybar.css" }
-swaync = { template = "swaync.css", target = "/home/benattia/.cache/wallust/swaync.css" }
-hyprland = { template = "hyprland.conf", target = "/home/benattia/.cache/wallust/hyprland.conf" }
+# swaync = { template = "swaync.css", target = "/home/benattia/.cache/wallust/swaync.css" }
+# hyprland = { template = "hyprland.conf", target = "/home/benattia/.cache/wallust/hyprland.conf" }

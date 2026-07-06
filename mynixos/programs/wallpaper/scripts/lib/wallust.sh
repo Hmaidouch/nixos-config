@@ -7,11 +7,13 @@ set -euo pipefail
 # ============================================================
 
 reload_waybar() {
-    pkill -USR2 -x waybar 2>/dev/null || true
+    #pkill -USR2 -x waybar 2>/dev/null || true
+    #pkill -SIGUSR2 waybar
+    #pkill -SIGUSR2 waybar 2>/dev/null || true
+    pkill --signal SIGUSR2 waybar 2>/dev/null || true
 }
 
 wallust_apply() {
-
     local image="$1"
 
     [[ -f "$image" ]] || {
@@ -24,13 +26,7 @@ wallust_apply() {
     reload_waybar
 }
 
-# ------------------------------------------------------------
-# Reload last wallpaper colors
-# ------------------------------------------------------------
-
 wallust_reload() {
-
     local image="$1"
-
     wallust_apply "$image"
 }
