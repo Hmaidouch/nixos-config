@@ -59,7 +59,9 @@ in
       posy-cursors
       swaylock-effects
       swaynotificationcenter
+      
       jq
+      libxml2
 
       localsend
 
