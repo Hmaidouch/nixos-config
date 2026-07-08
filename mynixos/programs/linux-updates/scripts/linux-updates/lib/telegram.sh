@@ -21,8 +21,8 @@ telegram_send_message() {
         --fail \
         --request POST \
         "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-        --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+        -d "chat_id=${TELEGRAM_CHAT_ID}" \
         --data-urlencode "text=${text}" \
-        --data-urlencode "disable_web_page_preview=true" \
-        > /dev/null
+        -d "disable_web_page_preview=true" \
+        >/dev/null
 }

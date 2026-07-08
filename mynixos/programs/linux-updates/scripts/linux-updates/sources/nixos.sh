@@ -19,17 +19,21 @@ fetch_latest() {
         return 1
     }
 
-    # استخراج أول رابط إعلان من الصفحة
-    article_path=$(printf "%s" "$html" |
-        grep -oE '/blog/announcements/[0-9]{4}/[^"]+/' |
-        head -n1 || true)
+    article_path=$(
+        printf "%s" "$html" |
+        grep -oE '/blog/announcements/[0-9]{4}/[^"/]+/' |
+        awk '!seen[$0]++' |
+        tail -n1 || true
+    )
 
-    # fallback إذا تغيّر تنسيق الصفحة
     if [[ -z "$article_path" ]]; then
-        article_path=$(printf "%s" "$html" |
+        article_path=$(
+            printf "%s" "$html" |
             grep -oE '/blog/announcements/[^"]+/' |
             grep -v '/blog/announcements/$' |
-            head -n1 || true)
+            awk '!seen[$0]++' |
+            tail -n1 || true
+        )
     fi
 
     [[ -n "$article_path" ]] || {
@@ -58,7 +62,6 @@ fetch_latest() {
 
     [[ -n "${NEWS_TITLE:-}" ]] || NEWS_TITLE="NixOS announcement"
 
-    # نحاول أخذ محتوى أطول من جسم المقال نفسه
     NEWS_CONTENT=$(printf "%s" "$article_html" |
         sed -n '/<main/,/<\/main>/p' |
         sed 's/<script[^>]*>.*<\/script>//g' |
