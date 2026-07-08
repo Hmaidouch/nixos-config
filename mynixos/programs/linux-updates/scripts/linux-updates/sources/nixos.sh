@@ -14,14 +14,14 @@ fetch_latest() {
         --silent \
         --show-error \
         --fail \
-        "https://nixos.org/blog/announcements/") || {
+        "https://nixos.org/blog/") || {
         echo "Failed to download NixOS announcements page" >&2
         return 1
     }
 
     article_path=$(
         printf "%s" "$html" |
-        grep -oE '/blog/announcements/[0-9]{4}/[^"/]+/' |
+        grep -oE '/blog/' |
         awk '!seen[$0]++' |
         tail -n1 || true
     )
@@ -29,8 +29,8 @@ fetch_latest() {
     if [[ -z "$article_path" ]]; then
         article_path=$(
             printf "%s" "$html" |
-            grep -oE '/blog/announcements/[^"]+/' |
-            grep -v '/blog/announcements/$' |
+            grep -oE '/blog/' |
+            grep -v '/blog/' |
             awk '!seen[$0]++' |
             tail -n1 || true
         )
