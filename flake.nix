@@ -16,9 +16,7 @@
       benattia = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hardware-configuration.nix
-          ./configuration.nix
-          ./mynixos/home.nix
+          ./hosts/configuration.nix
           
           # تفعيل موديل home-manager داخل الفليكس
           home-manager.nixosModules.home-manager

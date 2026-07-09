@@ -8,8 +8,9 @@
  
   imports =
     [ # Include the results of the hardware scan.
-      #./hardware-configuration.nix
-      ./mynixos/core
+      ./hardware-configuration.nix
+      ./mycore
+      ../mynixos
     ];
   
 

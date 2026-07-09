@@ -53,6 +53,7 @@ fi
 PROJECTS=(
     nixos
     nixos_release_notes
+    nixpkgs_unstable
     niri
     hyprland
     kotlin

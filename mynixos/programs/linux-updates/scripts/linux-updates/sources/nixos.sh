@@ -5,72 +5,84 @@ set -euo pipefail
 PROJECT_NAME="NixOS"
 
 fetch_latest() {
-    local html
-    local article_path
-    local article_url
-    local article_html
+    local feed_url="https://nixos.org/blog/announcements-rss.xml"
+    local matched
+    local PYTHON_BIN=""
 
-    html=$(curl \
-        --silent \
-        --show-error \
-        --fail \
-        "https://nixos.org/blog/") || {
-        echo "Failed to download NixOS announcements page" >&2
+    PYTHON_BIN="$(find_python3)" || {
+        echo "python3 not found" >&2
         return 1
     }
 
-    article_path=$(
-        printf "%s" "$html" |
-        grep -oE '/blog/' |
-        awk '!seen[$0]++' |
-        tail -n1 || true
+    matched=$(
+        "$PYTHON_BIN" - "$feed_url" <<'PY'
+import sys
+import re
+import html
+import urllib.request
+import xml.etree.ElementTree as ET
+
+feed_url = sys.argv[1]
+
+def clean_html(text: str) -> str:
+    if not text:
+        return ""
+    text = html.unescape(text)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+with urllib.request.urlopen(feed_url) as r:
+    xml_data = r.read()
+
+root = ET.fromstring(xml_data)
+
+# namespace الخاص بـ content:encoded
+ns = {
+    "content": "http://purl.org/rss/1.0/modules/content/"
+}
+
+channel = root.find("channel")
+if channel is None:
+    sys.exit(1)
+
+items = channel.findall("item")
+if not items:
+    sys.exit(1)
+
+# أول item في RSS هو الأحدث
+item = items[0]
+
+title = (item.findtext("title") or "").strip()
+link = (item.findtext("link") or "").strip()
+
+content_encoded = item.findtext("{http://purl.org/rss/1.0/modules/content/}encoded") or ""
+description = item.findtext("description") or ""
+
+content = content_encoded if content_encoded.strip() else description
+content = clean_html(content)
+
+print(title)
+print(link)
+print(content)
+PY
     )
 
-    if [[ -z "$article_path" ]]; then
-        article_path=$(
-            printf "%s" "$html" |
-            grep -oE '/blog/' |
-            grep -v '/blog/' |
-            awk '!seen[$0]++' |
-            tail -n1 || true
-        )
-    fi
-
-    [[ -n "$article_path" ]] || {
-        echo "Failed to find latest NixOS article link" >&2
+    [[ -n "${matched:-}" ]] || {
+        echo "Failed to parse NixOS RSS feed" >&2
         return 1
     }
 
-    article_url="https://nixos.org${article_path}"
+    NEWS_TITLE=$(printf "%s\n" "$matched" | sed -n '1p')
+    NEWS_URL=$(printf "%s\n" "$matched" | sed -n '2p')
+    NEWS_CONTENT=$(printf "%s\n" "$matched" | sed -n '3,$p')
 
-    article_html=$(curl \
-        --silent \
-        --show-error \
-        --fail \
-        "$article_url") || {
-        echo "Failed to download NixOS article page" >&2
-        return 1
-    }
+    [[ -n "${NEWS_TITLE:-}" ]] || return 1
+    [[ -n "${NEWS_URL:-}" ]] || return 1
+    [[ -n "${NEWS_CONTENT:-}" ]] || return 1
 
-    NEWS_URL="$article_url"
-    NEWS_ID="$article_url"
-    NEWS_SOURCE="announcements"
+    NEWS_ID="$NEWS_URL"
+    NEWS_SOURCE="announcements_rss"
 
-    NEWS_TITLE=$(printf "%s" "$article_html" |
-        sed -n 's:.*<title>\(.*\) | Blog | Nix & NixOS</title>.*:\1:p' |
-        head -n1)
-
-    [[ -n "${NEWS_TITLE:-}" ]] || NEWS_TITLE="NixOS announcement"
-
-    NEWS_CONTENT=$(printf "%s" "$article_html" |
-        sed -n '/<main/,/<\/main>/p' |
-        sed 's/<script[^>]*>.*<\/script>//g' |
-        sed 's/<style[^>]*>.*<\/style>//g' |
-        sed 's/<[^>]*>/ /g' |
-        sed 's/&quot;/"/g; s/&amp;/\&/g; s/&nbsp;/ /g' |
-        tr -s ' ' |
-        fold -s -w 1000 |
-        head -n 20)
-
-    [[ -n "${NEWS_TITLE:-}" && -n "${NEWS_URL:-}" && -n "${NEWS_ID:-}" ]]
+    return 0
 }
