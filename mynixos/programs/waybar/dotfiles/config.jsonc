@@ -17,6 +17,7 @@
     "./modules/prayer.jsonc",
     "./modules/language.jsonc",
     "./modules/launcher.jsonc",
+    //"./modules/distro.jsonc",
     "./modules/control_panel.jsonc"
   ],
   "modules-left": [
@@ -30,6 +31,7 @@
     "group/themes",
     "group/system",
     "group/news",
+    //"group/distro",
     "niri/language",
     "hyprland/language",
     "clock",

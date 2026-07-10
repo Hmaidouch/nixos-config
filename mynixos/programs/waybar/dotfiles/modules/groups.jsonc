@@ -1,13 +1,13 @@
 {
   "group/themes": {
     "orientation": "horizontal",
-    //"drawer": {
-    //  "transition-duration": 500,
-    //  "transition-left-to-right": false
-    //},
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false
+    },
     "modules": [
-      "custom/theme_switch",
-      "custom/iconstheme_switch"
+      "custom/iconstheme_switch",
+      "custom/theme_switch"
     ]
   },
   "group/system": {
@@ -25,14 +25,14 @@
   },
   "group/news": {
     "orientation": "horizontal",
-   // "drawer": {
-   //   "transition-duration": 650,
-   //   "transition-left-to-right": true
-   // },
+    "drawer": {
+      "transition-duration": 650,
+      "transition-left-to-right": true
+    },
     "modules": [
       "custom/niri_news",
-      "custom/nixos_news",
       "custom/hyprland_news",
+      "custom/nixos_news",
       "custom/kmp_news"
     ]
   },
@@ -69,5 +69,18 @@
       "custom/tray-arrow",
       "tray"
     ]
-  }
+  },
+  //"group/distro": {
+ //   "orientation": "horizontal",
+  //  "drawer": {
+  //    "transition-duration": 500,
+  //    "transition-left-to-right": false
+  //  },
+  //  "modules": [
+   //   "custom/distro",
+  //    "custom/terminal",
+  //    "custom/code",
+   //   "custom/obsidian"
+  //  ]
+//  }
 }

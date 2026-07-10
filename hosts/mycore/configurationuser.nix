@@ -56,7 +56,10 @@
 
     ntfs3g
 
-   
+   waydroid
+
+   networkmanager_dmenu
+   noctalia-shell
   ];
 
   # for localsend
@@ -72,5 +75,7 @@ virtualisation.libvirtd.enable = true;
 # تفعيل ميزتي Spice و KVM لتسريع الرسوميات والصوت داخل الأنظمة الوهمية
 virtualisation.spiceUSBRedirection.enable = true;
 programs.virt-manager.enable = true;
+
+virtualisation.waydroid.enable = true;
   
 }

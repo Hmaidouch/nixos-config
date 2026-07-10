@@ -1,0 +1,134 @@
+configuration {
+    modi: "drun";
+    show-icons: false;
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+    scroll-method: 0;
+    disable-history: true;
+    hide-scrollbar: true;
+    display-drun: "Networks";
+}
+
+* {
+    font: "JetBrainsMono Nerd Font 10";
+
+    bg:         #f3f4f6ee;
+    bg-alt:     #e8edf3ee;
+    fg:         #1f2937;
+    fg-alt:     #6b7280;
+    border:     #cfd6df;
+    accent:     #4f7cff;
+    selected:   #dbe7ff;
+    active:     #dff4e4;
+    urgent:     #fde2e2;
+
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    location: southeast;
+    anchor: southeast;
+
+    x-offset: -14px;
+    y-offset: -14px;
+
+    width: 600px;
+    border: 2px;
+    border-color: @border;
+    border-radius: 18px;
+    background-color: @bg;
+    padding: 14px;
+}
+
+mainbox {
+    spacing: 10px;
+    children: [ "inputbar", "listview" ];
+    background-color: transparent;
+}
+
+inputbar {
+    spacing: 10px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background-color: @bg-alt;
+    text-color: @fg;
+    children: [ "prompt", "entry" ];
+}
+
+prompt {
+    str: "Networks";
+    text-color: @accent;
+    background-color: transparent;
+}
+
+entry {
+    placeholder: "Wi-Fi / Network";
+    placeholder-color: @fg-alt;
+    text-color: @fg;
+    background-color: transparent;
+}
+
+listview {
+    columns: 2;
+    lines: 7;
+    cycle: false;
+    dynamic: false;
+    layout: vertical;
+    spacing: 10px;
+    scrollbar: false;
+    background-color: transparent;
+    padding: 2px;
+}
+
+element {
+    orientation: vertical;
+    padding: 14px;
+    border-radius: 16px;
+    background-color: @bg-alt;
+    text-color: @fg;
+}
+
+element normal.normal {
+    background-color: @bg-alt;
+    text-color: @fg;
+}
+
+element normal.active {
+    background-color: @bg-alt;
+    text-color: #237a3b;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color: @fg;
+    border: 1px;
+    border-color: @accent;
+}
+
+element selected.active {
+    background-color: @active;
+    text-color: @fg;
+    border: 1px;
+    border-color: #67b26f;
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @fg;
+    border: 1px;
+    border-color: #e57373;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+element-icon {
+    background-color: transparent;
+    size: 1em;
+}
