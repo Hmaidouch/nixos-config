@@ -8,6 +8,7 @@ configuration {
     disable-history: true;
     hide-scrollbar: true;
     display-drun: "Networks";
+    kb-cancel: "Escape,MousePrimary";
 }
 
 * {
@@ -31,8 +32,8 @@ window {
     location: southeast;
     anchor: southeast;
 
-    x-offset: -12px;
-    y-offset: -12px;
+    x-offset: -14px;
+    y-offset: -14px;
 
     width: 450px;
     border: 2px;
@@ -44,35 +45,13 @@ window {
 
 mainbox {
     spacing: 10px;
-    children: [ "inputbar", "listview" ];
-    background-color: transparent;
-}
-
-inputbar {
-    spacing: 10px;
-    padding: 10px 14px;
-    border-radius: 14px;
-    background-color: @bg-alt;
-    text-color: @fg;
-    children: [ "prompt", "entry" ];
-}
-
-prompt {
-    str: "Networks";
-    text-color: @accent;
-    background-color: transparent;
-}
-
-entry {
-    placeholder: "Wi-Fi / Network";
-    placeholder-color: @fg-alt;
-    text-color: @fg;
+    children: [ "listview" ];
     background-color: transparent;
 }
 
 listview {
     columns: 2;
-    lines: 4;
+    lines: 5;
     cycle: false;
     dynamic: false;
     layout: vertical;

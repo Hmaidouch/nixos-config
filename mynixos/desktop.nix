@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   # 1. Define the path to your programs directory
@@ -30,7 +30,12 @@ in
     ] ++ programImports;
 
     home-manager.users.benattia = {
-  
+
+   # imports = [
+   #   inputs.noctalia.homeModules.default
+   # ];
+   # programs.noctalia-shell.enable = true;
+
     home.enableNixpkgsReleaseCheck = false;
     home.username = "benattia";
     home.homeDirectory = "/home/benattia";
@@ -45,7 +50,7 @@ in
       (writeShellScriptBin "salat" (builtins.readFile ./scripts/salat.sh))
       (writeShellScriptBin "theme_switch" (builtins.readFile ./scripts/themes/theme_switch.sh))
       (writeShellScriptBin "iconstheme_switch" (builtins.readFile ./scripts/themes/iconstheme_switch.sh))
-      #(writeShellScriptBin "network_menu" (builtins.readFile ./scripts/network_menu.sh))
+      (writeShellScriptBin "network_menu" (builtins.readFile ./scripts/network_menu.sh))
       #news :
      # (writeShellScriptBin "hyprland_news" (builtins.readFile ./scripts/news/hyprland_news.sh))
       (writeShellScriptBin "hyprland_news" '' exec "$HOME/.local/share/news/hyprland_news.sh" '')

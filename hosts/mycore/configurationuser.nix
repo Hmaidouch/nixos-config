@@ -14,6 +14,7 @@
     shell = pkgs.zsh;
   };
 
+  programs.uwsm.enable = true;
 
   # gdm alternative
   services.greetd = {
@@ -29,7 +30,10 @@
       
        # إجبار tuigreet على تمرير أمر UWSM الخاص بـ Niri
        # command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd \"uwsm start -S -s niri.desktop\"";
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Niri";
+
+       
+       # command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Niri";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd 'uwsm start niri'";
 
         #command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --sessions /run/current-system/sw/share/wayland-sessions";
         user = "benattia";
@@ -53,13 +57,19 @@
     curl
    # pkgs.polkit_gnome
     lm_sensors
-
+tree
     ntfs3g
 
    waydroid
+   android-studio
+   android-tools
+   wl-clipboard
 
    networkmanager_dmenu
-   noctalia-shell
+
+  # for image explorer
+   loupe
+   #noctalia-shell
   ];
 
   # for localsend
@@ -77,5 +87,21 @@ virtualisation.spiceUSBRedirection.enable = true;
 programs.virt-manager.enable = true;
 
 virtualisation.waydroid.enable = true;
+virtualisation.waydroid.package = pkgs.waydroid-nftables;
+
+programs.xwayland.enable = true;
+
+
+
+#for noctalia
+#nix.settings = {
+ # extra-substituters = [
+ #   "https://noctalia.cachix.org"
+ # ];
+
+ # extra-trusted-public-keys = [
+ #   "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+ # ];
+#};
   
 }

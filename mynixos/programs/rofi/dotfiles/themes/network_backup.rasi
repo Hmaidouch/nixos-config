@@ -31,10 +31,10 @@ window {
     location: southeast;
     anchor: southeast;
 
-    x-offset: -12px;
-    y-offset: -12px;
+    x-offset: -14px;
+    y-offset: -14px;
 
-    width: 450px;
+    width: 600px;
     border: 2px;
     border-color: @border;
     border-radius: 18px;
@@ -72,7 +72,7 @@ entry {
 
 listview {
     columns: 2;
-    lines: 4;
+    lines: 7;
     cycle: false;
     dynamic: false;
     layout: vertical;

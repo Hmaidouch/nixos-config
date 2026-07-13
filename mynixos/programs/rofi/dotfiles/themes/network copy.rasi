@@ -1,0 +1,91 @@
+/**
+ * network.rasi
+ * Dedicated theme for the "network" rofi menu (programs/rofi/themes).
+ *
+ * Tries to import wallust-generated colors first so the menu follows the
+ * current wallpaper palette. If that file doesn't exist on your system yet,
+ * comment the @import line out and rely on the fallback vars below.
+ *
+ * Adjust the import path to match your actual wallust output, e.g.:
+ *   ~/.cache/wallust/colors-rofi.rasi
+ */
+@import "~/.cache/wallust/colors-rofi.rasi"
+
+* {
+    bg:       @bg      { default: #1e1e2eee; };
+    bg-alt:   @bg-alt  { default: #181825ee; };
+    fg:       @fg      { default: #cdd6f4; };
+    accent:   @accent  { default: #89b4fa; };
+    urgent:   @urgent  { default: #f38ba8; };
+
+    background-color: transparent;
+    text-color:        @fg;
+    font:               "JetBrainsMono Nerd Font 11";
+}
+
+window {
+    width:            420px;
+    location:         center;
+    anchor:           center;
+    transparency:     "real";
+    background-color: @bg;
+    border:           2px;
+    border-color:     @accent;
+    border-radius:    12px;
+    padding:          12px;
+}
+
+mainbox {
+    background-color: transparent;
+    children:          [ "inputbar", "message", "listview" ];
+    spacing:           8px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    text-color:        @fg;
+    border-radius:     8px;
+    padding:           8px 12px;
+    children:          [ "prompt", "entry" ];
+}
+
+prompt {
+    text-color:  @accent;
+    font:        "JetBrainsMono Nerd Font Bold 11";
+}
+
+entry {
+    placeholder:       "Search networks…";
+    placeholder-color: rgba(205, 214, 244, 60%);
+}
+
+message {
+    background-color: transparent;
+    padding:           4px 0px;
+}
+
+listview {
+    background-color: transparent;
+    lines:             8;
+    scrollbar:         false;
+    fixed-height:      false;
+    spacing:           4px;
+}
+
+element {
+    background-color: transparent;
+    text-color:        @fg;
+    border-radius:     8px;
+    padding:           8px 10px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color:        @bg;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:        inherit;
+    vertical-align:    0.5;
+}
