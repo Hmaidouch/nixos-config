@@ -108,6 +108,7 @@ in
 
 
       vlc
+      mpv
       opencode
       virt-manager
 

@@ -70,6 +70,11 @@ tree
   # for image explorer
    loupe
    #noctalia-shell
+
+   flatpak
+   flatpak-builder
+
+   wget
   ];
 
   # for localsend
@@ -90,6 +95,8 @@ virtualisation.waydroid.enable = true;
 virtualisation.waydroid.package = pkgs.waydroid-nftables;
 
 programs.xwayland.enable = true;
+
+services.flatpak.enable = true;
 
 
 
