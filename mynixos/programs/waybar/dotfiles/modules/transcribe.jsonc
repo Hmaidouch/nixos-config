@@ -1,0 +1,17 @@
+{
+    "custom/translate" : {
+      "format" : "󰗊",
+      "on-click" : "alacritty -e translate",
+      "tooltip" : true
+    },
+    "custom/transcribe_groq" : {
+      "format" : "󰔮",
+      "on-click" : "alacritty -e transcribe_groq",
+      "tooltip" : true
+    },
+    "custom/merge_subtitle" : {
+      "format" : "󰽜",
+      "on-click" : "alacritty -e merge_subtitle",
+      "tooltip" : true
+    }
+}

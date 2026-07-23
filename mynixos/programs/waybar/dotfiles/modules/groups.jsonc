@@ -70,6 +70,19 @@
       "tray"
     ]
   },
+
+  "group/transcribe": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 650,
+      "transition-left-to-right": true
+    },
+    "modules": [
+      "custom/translate",
+      "custom/transcribe_groq",
+      "custom/merge_subtitle"
+    ]
+  }
   //"group/distro": {
  //   "orientation": "horizontal",
   //  "drawer": {

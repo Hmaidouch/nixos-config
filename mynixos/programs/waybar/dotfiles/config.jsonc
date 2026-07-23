@@ -17,6 +17,7 @@
     "./modules/prayer.jsonc",
     "./modules/language.jsonc",
     "./modules/launcher.jsonc",
+    "./modules/transcribe.jsonc",
     //"./modules/distro.jsonc",
     "./modules/control_panel.jsonc"
   ],
@@ -37,6 +38,7 @@
     "clock",
     "clock#date",
     "group/connections",
+    "group/transcribe",
     "group/audio",
     "group/tray-group",
     "custom/control-panel"

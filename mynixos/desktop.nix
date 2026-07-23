@@ -51,6 +51,12 @@ in
       (writeShellScriptBin "theme_switch" (builtins.readFile ./scripts/themes/theme_switch.sh))
       (writeShellScriptBin "iconstheme_switch" (builtins.readFile ./scripts/themes/iconstheme_switch.sh))
       (writeShellScriptBin "network_menu" (builtins.readFile ./scripts/network_menu.sh))
+
+      #Transcribe :
+      (writeShellScriptBin "transcribe_groq" (builtins.readFile ./scripts/transcribe/transcribe_groq.sh))
+      (writeShellScriptBin "translate" (builtins.readFile ./scripts/transcribe/translate.sh))
+      (writeShellScriptBin "merge_subtitle" (builtins.readFile ./scripts/transcribe/merge_subtitle.sh))
+      
       #news :
      # (writeShellScriptBin "hyprland_news" (builtins.readFile ./scripts/news/hyprland_news.sh))
       (writeShellScriptBin "hyprland_news" '' exec "$HOME/.local/share/news/hyprland_news.sh" '')

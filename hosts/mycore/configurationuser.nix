@@ -75,6 +75,7 @@ tree
    flatpak-builder
 
    wget
+   ffmpeg
   ];
 
   # for localsend

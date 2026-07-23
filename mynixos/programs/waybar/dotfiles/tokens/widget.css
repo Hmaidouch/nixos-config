@@ -63,6 +63,7 @@
 #news,
 #themes,
 #language,
+#transcribe,
 #custom-prayer {
   margin: 3px 2px;
   padding: 4px 6px;
@@ -91,6 +92,9 @@
 #custom-theme_switch,
 #custom-iconstheme_switch,
 #custom-waybar_style_toggle,
+#custom-transcribe_groq,
+#custom-translate,
+#custom-merge_subtitle,
 #custom-prayer {
   margin: 3px 2px;
   /* margin-right: 2px;*/
