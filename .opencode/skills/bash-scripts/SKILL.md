@@ -156,3 +156,62 @@ Always pass theme:
 ```bash
 rofi -dmenu -i -p "Title" -theme "$ROFI_THEME"
 ```
+
+---
+
+# Transcribe Pipeline
+
+Multi-script workflow for video transcription and translation.
+
+Location:
+
+```
+mynixos/scripts/transcribe/
+```
+
+## Pipeline
+
+```
+Video → transcribe_groq.sh → Groq API (Whisper) → JSON
+    ↓
+json_to_srt.py → .srt + .txt + .vtt
+    ↓
+translate.sh → Gemini API → .ar.srt
+    ↓
+merge_subtitle.sh → subtitled.mp4
+```
+
+## Scripts
+
+| Script | Language | Purpose |
+|---|---|---|
+| `transcribe_groq.sh` | Bash | Extract audio, call Groq Whisper API |
+| `json_to_srt.py` | Python | Convert Groq JSON to SRT/VTT/TXT |
+| `translate.sh` | Bash | Orchestrate SRT translation via Gemini |
+| `translate_srt.py` | Python | Parse SRT, batch-translate via Gemini API |
+| `merge_subtitle.sh` | Bash | Embed Arabic SRT into video via ffmpeg |
+
+## API Keys
+
+Scripts load keys from `.env`:
+
+```bash
+ENV_FILE="$HOME/nixos-config/.env"
+source "$ENV_FILE"
+```
+
+Required keys:
+
+- `GROQ_API_KEY` — for transcription (Whisper)
+- `GEMINI_API_KEY` — for translation
+
+Never commit `.env`.
+
+## Conventions Used
+
+- `set -euo pipefail` in all bash scripts
+- Python scripts use `#!/usr/bin/env python3`
+- Batch translation in chunks of 30 lines
+- Skip existing output files (idempotent)
+- Use `read -n1` at end for terminal pause
+- ffmpeg for audio extraction and subtitle embedding

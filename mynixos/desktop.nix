@@ -68,6 +68,7 @@ in
       vscode
       alacritty
       nemo
+      thunar
       posy-cursors
       swaylock-effects
       swaynotificationcenter
@@ -113,8 +114,7 @@ in
       hyprpicker
 
 
-      vlc
-      mpv
+   
       opencode
       virt-manager
 

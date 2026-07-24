@@ -57,3 +57,21 @@ hosts/hardware-configuration.nix
 ```
 
 Read repository-rules skill before large refactors.
+
+---
+
+# Scripts
+
+Scripts live inside:
+
+```
+mynixos/scripts/
+```
+
+Example workflows:
+
+- `transcribe/` — video transcription, translation, subtitle embedding
+- `themes/` — GTK and icon theme switching
+- `news/` — Linux news aggregation
+
+Desktop scripts are installed via `writeShellScriptBin` in `desktop.nix`.

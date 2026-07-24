@@ -71,6 +71,35 @@ Never force push.
 
 ---
 
+# Secrets
+
+API keys live in `.env` at repository root.
+
+```
+.env
+```
+
+Loaded via:
+
+```bash
+source "$HOME/nixos-config/.env"
+```
+
+Never commit `.env`.
+
+Never log API keys.
+
+Never echo secrets to output.
+
+Required keys:
+
+- `GROQ_API_KEY` — Groq Whisper transcription
+- `GEMINI_API_KEY` — Gemini translation
+- `TELEGRAM_BOT_TOKEN` — Telegram notifications
+- `TELEGRAM_CHAT_ID` — Telegram chat target
+
+---
+
 # Output Style
 
 When modifying files always provide

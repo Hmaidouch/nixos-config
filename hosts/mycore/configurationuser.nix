@@ -20,11 +20,11 @@
   services.greetd = {
     enable = true;
     settings = {
-      initial_session = {
+    #  initial_session = {
         #command = "start-hyprland";
-        command = "niri-session";
-        user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
-      };
+      #  command = "niri-session";
+     #   user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
+    #  };
       default_session = {
        # command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
       
@@ -76,6 +76,9 @@ tree
 
    wget
    ffmpeg
+
+      vlc
+      mpv
   ];
 
   # for localsend
