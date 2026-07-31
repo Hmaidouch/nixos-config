@@ -223,7 +223,6 @@ modules/<name>.nix
 
 Used for:
 
-- printer drivers (canon-capt)
 - custom services
 - hardware configuration
 
