@@ -31,21 +31,33 @@ Never recommend channels.
 Repository:
 
 ```
-hosts/
-mynixos/
 flake.nix
+hosts/        — machine-specific NixOS config
+mynixos/      — desktop / program / session config
+pkgs/         — custom Nix packages
+overlays/     — nixpkgs overlays
+modules/      — NixOS modules
+docs/         — setup guides
 ```
 
-Desktop configuration lives inside:
+Desktop / programs / sessions live inside:
 
 ```
 mynixos/
 ```
 
-Machine configuration lives inside:
+Machine config lives inside:
 
 ```
 hosts/
+```
+
+Custom packages / overlays / modules live under:
+
+```
+pkgs/
+overlays/
+modules/
 ```
 
 Always preserve repository architecture.

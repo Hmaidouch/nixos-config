@@ -38,6 +38,7 @@
       cc = "clear";
 
       cdn = "cd ~/nixos-config";
+      zshc = "rm -f ~/.zsh_history && touch ~/.zsh_history";
     };
     
     

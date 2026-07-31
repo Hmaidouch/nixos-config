@@ -7,10 +7,15 @@
     keep-derivations = true;
   };
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   users.users.benattia = {
     isNormalUser = true;
     description = "Benattia";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" "kvm"];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "libvirtd" "kvm" ];
     shell = pkgs.zsh;
   };
 
@@ -20,11 +25,11 @@
   services.greetd = {
     enable = true;
     settings = {
-    #  initial_session = {
+      initial_session = {
         #command = "start-hyprland";
-      #  command = "niri-session";
-     #   user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
-    #  };
+        command = "niri-session";
+        user = "benattia"; # تأكد من كتابة اسم المستخدم الخاص بك
+      };
       default_session = {
        # command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
       
@@ -101,8 +106,6 @@ virtualisation.waydroid.package = pkgs.waydroid-nftables;
 programs.xwayland.enable = true;
 
 services.flatpak.enable = true;
-
-
 
 #for noctalia
 #nix.settings = {

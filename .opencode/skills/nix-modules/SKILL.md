@@ -178,3 +178,68 @@ programs/<name>/
 desktop.nix automatically imports it.
 
 Never edit desktop.nix.
+
+---
+
+# Custom Packages
+
+For system-level software not in nixpkgs, use:
+
+```
+pkgs/<name>/
+    default.nix
+```
+
+Created with `stdenv.mkDerivation` or similar.
+
+Registered in flake.nix via an overlay:
+
+```nix
+# overlays/<name>.nix
+final: prev: {
+  <name> = final.callPackage ../pkgs/<name> { };
+}
+```
+
+Then added to flake.nix:
+
+```nix
+{
+  nixpkgs.overlays = [
+    (import ./overlays/<name>.nix)
+  ];
+}
+```
+
+---
+
+# NixOS Modules
+
+Custom NixOS modules live in:
+
+```
+modules/<name>.nix
+```
+
+Used for:
+
+- printer drivers (canon-capt)
+- custom services
+- hardware configuration
+
+Imported in flake.nix:
+
+```nix
+(import ./modules/<name>.nix)
+```
+
+---
+
+# Directory Structure Summary
+
+```
+pkgs/<name>/          — custom package derivations
+overlays/<name>.nix   — nixpkgs overlays
+modules/<name>.nix    — NixOS modules
+docs/<name>.md        — documentation / setup guides
+```
