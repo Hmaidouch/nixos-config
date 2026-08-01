@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
 {
+
+    # القرص الصلب NTFS (New Volume) يُركّب تلقائياً عند الإقلاع
+  boot.supportedFilesystems = [ "ntfs" ];
+  # نفذ الامر lsblk -f  (للحصول على UUID الخاص بالقرص الصلب)
+  fileSystems."/media/D" =
+    { device = "/dev/disk/by-uuid/3EF888E0F88897B3";
+      fsType = "ntfs";
+      options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" "noauto" "x-systemd.automount"];
+    };
+
   # إعدادات Nix لتسهيل التطوير والاختبار
   nix.settings = {
     keep-outputs = true;
@@ -85,6 +95,7 @@ tree
       vlc
       mpv
   ];
+
 
   # for localsend
 networking.firewall = {

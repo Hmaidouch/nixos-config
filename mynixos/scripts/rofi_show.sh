@@ -26,6 +26,9 @@ build_menu() {
     printf "nemo\x00display\x1fNemo\x1ficon\x1fnemo\n"
     printf "alacritty\x00display\x1fTerminal\x1ficon\x1ffoot\n"
     printf "code\x00display\x1fVS Code\x1ficon\x1fcode\n"
+    printf "localsend\x00display\x1fLocalSend\x1ficon\x1flocalsend\n"
+    printf "gnome-text-editor\x00display\x1fText\x1ficon\x1fgnome-text-editor\n"
+    printf "thunar\x00display\x1fThunar\x1ficon\x1fthunar\n"
 }
 
 launch_app() {

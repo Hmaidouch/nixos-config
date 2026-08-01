@@ -1,6 +1,8 @@
 { config, pkgs, inputs, ... }:
 
 let
+  # Windows 11 style icon theme (yellow folders, not in nixpkgs)
+  win11IconTheme = pkgs.callPackage ./programs/nemo/win11-icon-theme.nix { };
   # 1. Define the path to your programs directory
   #programsDir = /home/benattia/mynixos/config3/programs;
 
@@ -129,9 +131,8 @@ in
         #package = pkgs.orchis-theme;
       };
       iconTheme = {
-        name = "Tela-circle-light";
-        #name = "breeze";
-        #package = pkgs.tela-circle-icon-theme;
+        name = "Win11";
+        package = win11IconTheme;
       };
     };
 

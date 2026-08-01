@@ -43,7 +43,7 @@ window {
   location : south west;
   anchor: south west;
   width    : 500px;
-  height   : 560px;
+  height   : 570px;
   x-offset: 10px;
  /* y-offset: 40px;  */
   y-offset: -10px;
