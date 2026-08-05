@@ -115,11 +115,13 @@ in
       galculator
       hyprpicker
 
-
+libreoffice
    
       opencode
       virt-manager
 
+      fastfetch
+      
 
     ];
 

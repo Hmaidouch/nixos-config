@@ -8,7 +8,8 @@
   fileSystems."/media/D" =
     { device = "/dev/disk/by-uuid/3EF888E0F88897B3";
       fsType = "ntfs";
-      options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" "noauto" "x-systemd.automount"];
+      options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" "autofs" "x-systemd.automount"];
+     # options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" "noautofs" "windows_names" ];
     };
 
   # إعدادات Nix لتسهيل التطوير والاختبار
@@ -94,6 +95,8 @@ tree
 
       vlc
       mpv
+
+      resources
   ];
 
 
@@ -105,10 +108,30 @@ networking.firewall = {
 };
 
 # تفعيل خدمة libvirtd لإدارة الآلات الافتراضية
-virtualisation.libvirtd.enable = true;
+# virtualisation.libvirtd.enable = true;
+
+# وحدات kernel اللازمة للمحاكاة: bridge لشبكة virbr0 الافتراضية، kvm-amd لتسريع الأجهزة
+# boot.kernelModules = [ "bridge" "kvm-amd" ];
+
+# تعريف شبكة libvirtd الافتراضية (NAT virbr0) وتشغيلها عند كل إقلاع
+#systemd.services.libvirtd-network-default = {
+ # description = "Ensure libvirt default network is defined and running";
+ # after = [ "libvirtd.service" ];
+ # wantedBy = [ "libvirtd.service" ];
+ # path = [ pkgs.libvirt ];
+ # serviceConfig = {
+ #   Type = "oneshot";
+ #   RemainAfterExit = true;
+ # };
+ # script = ''
+ #   virsh net-define ${config.virtualisation.libvirtd.package}/var/lib/libvirt/qemu/networks/default.xml 2>/dev/null || true
+ #   virsh net-autostart default 2>/dev/null || true
+ #   virsh net-start default 2>/dev/null || true
+ # '';
+#};
 
 # تفعيل ميزتي Spice و KVM لتسريع الرسوميات والصوت داخل الأنظمة الوهمية
-virtualisation.spiceUSBRedirection.enable = true;
+#virtualisation.spiceUSBRedirection.enable = true;
 programs.virt-manager.enable = true;
 
 virtualisation.waydroid.enable = true;
