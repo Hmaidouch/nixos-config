@@ -5,11 +5,12 @@
     # القرص الصلب NTFS (New Volume) يُركّب تلقائياً عند الإقلاع
   boot.supportedFilesystems = [ "ntfs" ];
   # نفذ الامر lsblk -f  (للحصول على UUID الخاص بالقرص الصلب)
+  # "x-systemd.automount" لايحمل القرص عند الاقلاع الااذا دخلت على المجلد الخاص به
   fileSystems."/media/D" =
     { device = "/dev/disk/by-uuid/3EF888E0F88897B3";
       fsType = "ntfs";
-      options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" "autofs" "x-systemd.automount"];
-     # options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" "noautofs" "windows_names" ];
+      options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" "x-systemd.automount" ];
+     # options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" "noauto" "windows_names" ];
     };
 
   # إعدادات Nix لتسهيل التطوير والاختبار

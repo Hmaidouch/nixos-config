@@ -121,7 +121,10 @@ libreoffice
       virt-manager
 
       fastfetch
-      
+
+      keepass
+      veracrypt
+      cryptomator
 
     ];
 
