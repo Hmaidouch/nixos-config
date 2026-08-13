@@ -1,0 +1,65 @@
+:root {
+  --ff-accent: #7c85f5;
+  --ff-accent-soft: rgba(124, 133, 245, 0.18);
+  --ff-bg: #f4f4f8;
+  --ff-bg-raised: #ffffff;
+  --ff-text: rgba(0, 0, 0, 0.85);
+  --ff-text-dim: rgba(0, 0, 0, 0.5);
+  --ff-border: rgba(180, 185, 255, 0.25);
+  --ff-radius: 10px;
+}
+
+* {
+  font-family: "Segoe UI", sans-serif !important;
+}
+
+#navigator-toolbox,
+#nav-bar,
+#TabsToolbar,
+#PersonalToolbar {
+  background: var(--ff-bg) !important;
+  border: none !important;
+}
+
+toolbar {
+  color: var(--ff-text) !important;
+}
+
+#urlbar-background {
+  background: var(--ff-bg-raised) !important;
+  border: 1px solid var(--ff-border) !important;
+  border-radius: var(--ff-radius) !important;
+}
+
+#urlbar[focused="true"] #urlbar-background {
+  border-color: var(--ff-accent) !important;
+  box-shadow: 0 0 0 2px var(--ff-accent-soft) !important;
+}
+
+.tabbrowser-tab .tab-background {
+  border-radius: var(--ff-radius) !important;
+}
+
+.tabbrowser-tab[visuallyselected="true"] .tab-background {
+  background: var(--ff-bg-raised) !important;
+  border: 1px solid var(--ff-border) !important;
+}
+
+.tabbrowser-tab[visuallyselected="true"] .tab-label {
+  color: var(--ff-text) !important;
+}
+
+.tabbrowser-tab .tab-content {
+  color: var(--ff-text-dim) !important;
+}
+
+#identity-box,
+#page-action-buttons toolbarbutton,
+toolbar #star-button {
+  color: var(--ff-text) !important;
+}
+
+#panel-main-view {
+  background: var(--ff-bg-raised) !important;
+  color: var(--ff-text) !important;
+}

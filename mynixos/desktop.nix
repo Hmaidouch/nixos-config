@@ -66,7 +66,6 @@ in
       (writeShellScriptBin "nixos_news" '' exec "$HOME/.local/share/news/nixos_news.sh" '')
       (writeShellScriptBin "kmp_news" '' exec "$HOME/.local/share/news/kmp_news.sh" '')
 
-      firefox
       vscode
       alacritty
       nemo
