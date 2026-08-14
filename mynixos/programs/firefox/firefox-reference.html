@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8" />
+<title>مرجع تخصيص فايرفوكس - NixOS</title>
+<style>
+  body {
+    font-family: "Noto Sans Arabic", sans-serif;
+    font-size: 12pt;
+    color: #1a1a2e;
+    margin: 1.8cm 1.6cm;
+    line-height: 1.7;
+    direction: rtl;
+  }
+  h1 {
+    color: #7c85f5;
+    font-size: 20pt;
+    border-bottom: 3px solid #7c85f5;
+    padding-bottom: 8px;
+  }
+  h2 {
+    color: #7c85f5;
+    font-size: 15pt;
+    margin-top: 26px;
+    border-right: 5px solid #7c85f5;
+    padding-right: 10px;
+  }
+  h3 {
+    color: #3a3f78;
+    font-size: 13pt;
+    margin-top: 18px;
+  }
+  code, pre {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5pt;
+    background: #f2f3fa;
+    border: 1px solid #d8daf0;
+    border-radius: 6px;
+    padding: 1px 5px;
+    color: #30376b;
+  }
+  pre {
+    direction: ltr;
+    text-align: left;
+    padding: 10px 12px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 10.5pt;
+  }
+  th {
+    background: #7c85f5;
+    color: #ffffff;
+    padding: 6px 10px;
+    text-align: right;
+  }
+  td {
+    border: 1px solid #c9ccf0;
+    padding: 5px 10px;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background: #f7f8ff;
+  }
+  td code {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+  .path {
+    color: #7c85f5;
+    font-weight: bold;
+  }
+  .note {
+    background: #fff4e0;
+    border-right: 4px solid #f0a832;
+    padding: 8px 12px;
+    margin: 12px 0;
+  }
+  .info {
+    background: #eef2ff;
+    border-right: 4px solid #7c85f5;
+    padding: 8px 12px;
+    margin: 12px 0;
+  }
+</style>
+</head>
+<body>
+
+<h1>مرجع تخصيص فايرفوكس عبر Nix</h1>
+<p>دليل شامل لجميع المصطلحات والإعدادات المستخدمة في مجلد <span class="path">mynixos/programs/firefox/</span>، مع أمثلة للتعديل الذاتي.</p>
+
+<h2>1. نظرة عامة على الملفات</h2>
+<table>
+  <tr><th>الملف</th><th>الوظيفة</th></tr>
+  <tr><td><code>default.nix</code></td><td>تفعيل فايرفوكس وإعداد البروفايل والخطوط والمظهر عبر وحدة Home Manager.</td></tr>
+  <tr><td><code>dotfiles/userChrome.css</code></td><td>تنسيق <b>واجهة المتصفح نفسها</b> (أشرطة الأدوات، التبويبات، شريط العنوان).</td></tr>
+  <tr><td><code>dotfiles/userContent.css</code></td><td>تنسيق <b>محتوى صفحات الويب</b> (الخطوط، صفحة التبويب الجديد، شريط التمرير).</td></tr>
+</table>
+
+<div class="info">
+<b>الآلية:</b> Home Manager يكتب إعدادات <code>settings</code> في ملف <code>user.js</code> داخل مجلد البروفايل، وهذا الملف <b>يتجاوز</b> ملف <code>prefs.js</code> عند كل إطلاق لفايرفوكس، أي أن إعداداتك تبقى دائمة ولا يمكن تغييرها من واجهة المتصفح. أما ملفات CSS فتُنسَخ إلى مجلد <code>chrome/</code> داخل البروفايل.
+</div>
+
+<h2>2. إعدادات البروفايل في default.nix</h2>
+<pre>
+profiles.default = {
+  id = 0;
+  path = "tagudfjt.default";
+  storeId = "305c9bb5";
+  settings = { ... };
+  userChrome = ./dotfiles/userChrome.css;
+  userContent = ./dotfiles/userContent.css;
+};
+</pre>
+<table>
+  <tr><th>المصطلح</th><th>المعنى</th></tr>
+  <tr><td><code>programs.firefox.enable</code></td><td>تفعيل وحدة فايرفوكس في Home Manager (يثبّت الحزمة وينشئ البروفايل).</td></tr>
+  <tr><td><code>profiles.default</code></td><td>تعريف بروفايل اسمه "default". يمكن تسميته أي اسم، وهو البروفايل الافتراضي (id = 0).</td></tr>
+  <tr><td><code>id</code></td><td>رقم البروفايل؛ يجب أن يكون <b>0</b> للبروفايل الافتراضي ورقماً مميزاً لكل بروفايل إضافي.</td></tr>
+  <tr><td><code>path</code></td><td>اسم مجلد البروفايل داخل <code>~/.config/mozilla/firefox/</code>. هنا استخدمنا المجلد الموجود مسبقاً <code>tagudfjt.default</code> للحفاظ على بياناتك.</td></tr>
+  <tr><td><code>storeId</code></td><td>المعرّف السداسي للبروفايل (ميزة Switchable Profiles في فايرفوكس الحديث). <b>اختياري</b>، وضعناه للحفاظ على القيمة الأصلية.</td></tr>
+  <tr><td><code>settings</code></td><td>قائمة التفضيلات (تُكتب في user.js). كل مفتاح يُكتب كـ <code>user_pref("...", value)</code>.</td></tr>
+  <tr><td><code>userChrome</code></td><td>مسار ملف CSS لواجهة المتصفح. يمكن أن يكون نصاً مباشراً داخل default.nix بدل مسار ملف.</td></tr>
+  <tr><td><code>userContent</code></td><td>مسار ملف CSS لصفحات الويب.</td></tr>
+</table>
+
+<h2>3. إعدادات الخطوط (settings)</h2>
+<table>
+  <tr><th>المفتاح</th><th>القيمة الحالية</th><th>الشرح</th></tr>
+  <tr><td><code>font.default.x-western</code></td><td><code>"sans-serif"</code></td><td>النوع الافتراضي للنصوص: <code>sans-serif</code> أو <code>serif</code> أو <code>monospace</code>.</td></tr>
+  <tr><td><code>font.name.sans-serif.x-western</code></td><td><code>"Segoe UI"</code></td><td>الخط الأساسي للنصوص العادية (الخطوط اللاتينية/الأوروبية).</td></tr>
+  <tr><td><code>font.name.serif.x-western</code></td><td><code>"Segoe UI"</code></td><td>الخط الذي تُستخدمه المواقع عندما تطلب خط <code>serif</code> (ترويسة).</td></tr>
+  <tr><td><code>font.name.monospace.x-western</code></td><td><code>"Segoe UI"</code></td><td>الخط المستخدم للكود والعناصر ذات العرض الثابت.</td></tr>
+  <tr><td><code>font.name-list.sans-serif.x-western</code></td><td><code>"Segoe UI, Noto Sans"</code></td><td><b>قائمة بديلة</b>: إذا لم يجد فايرفوكس الخط الأول يجرب التالي. الأفضل لتغطية الرموز الغائبة.</td></tr>
+  <tr><td><code>font.name-list.serif.x-western</code></td><td><code>"Segoe UI, Noto Serif"</code></td><td>قائمة بديلة لخط serif.</td></tr>
+  <tr><td><code>font.name-list.monospace.x-western</code></td><td><code>"Segoe UI, JetBrains Mono"</code></td><td>قائمة بديلة للخط الثابت العرض.</td></tr>
+  <tr><td><code>font.name.sans-serif.x-arabic</code></td><td><code>"Noto Sans Arabic"</code></td><td>الخط للنصوص <b>العربية</b>. استخدمنا Noto لأن حزمة vista-fonts لا تحتوي Segoe UI عربياً.</td></tr>
+  <tr><td><code>font.name-list.sans-serif.x-arabic</code></td><td><code>"Segoe UI, Noto Sans Arabic"</code></td><td>قائمة بديلة للعربية.</td></tr>
+  <tr><td><code>font.size.variable.x-western</code></td><td><code>16</code></td><td>حجم خط النصوص العادية بالبكسل.</td></tr>
+  <tr><td><code>font.size.fixed.x-western</code></td><td><code>14</code></td><td>حجم الخط الثابت العرض (الكود).</td></tr>
+  <tr><td><code>font.minimum-size.x-western</code></td><td><code>12</code></td><td>الحد الأدنى لأي حجم خط؛ يمنع المواقع من عرض نص صغير جداً.</td></tr>
+</table>
+
+<div class="note">
+<b>تلميح:</b> لكل لغة لاحقة خاصة: <code>x-western</code> (اللاتينية)، <code>x-arabic</code> (العربية)، <code>x-hebrew</code>، <code>x-cjk</code> (الصينية/اليابانية/الكورية)...
+</div>
+
+<h2>4. إعدادات المظهر (settings)</h2>
+<table>
+  <tr><th>المفتاح</th><th>القيمة</th><th>الشرح</th></tr>
+  <tr><td><code>ui.systemUsesDarkTheme</code></td><td><code>0</code></td><td>فرض الوضع الفاتح. <code>0</code> = فاتح، <code>1</code> = داكن.</td></tr>
+  <tr><td><code>browser.theme.toolbar-theme</code></td><td><code>"light"</code></td><td>ألوان أشرطة الأدوات: <code>light</code> / <code>dark</code> / <code>auto</code>.</td></tr>
+  <tr><td><code>browser.theme.content-theme</code></td><td><code>"light"</code></td><td>ألوان محتوى الصفحات عند استخدام السمة الداكنة/الفاتحة.</td></tr>
+  <tr><td><code>browser.display.use_system_colors</code></td><td><code>true</code></td><td>استخدام ألوان نظام GTK في عناصر النماذج والأزرار داخل الصفحات.</td></tr>
+</table>
+
+<h2>5. إعدادات الواجهة المدمجة (settings)</h2>
+<table>
+  <tr><th>المفتاح</th><th>القيمة</th><th>الشرح</th></tr>
+  <tr><td><code>browser.compactmode.show</code></td><td><code>true</code></td><td>إظهار خيار الكثافة "المدمجة" في إعدادات فايرفوكس.</td></tr>
+  <tr><td><code>browser.uidensity</code></td><td><code>1</code></td><td>كثافة الواجهة: <code>0</code> = قياسي، <code>1</code> = مدمج، <code>2</code> = للمس.</td></tr>
+  <tr><td><code>browser.tabs.drawInTitlebar</code></td><td><code>true</code></td><td>سحب شريط التبويبات إلى داخل شريط العنوان (توفير مساحة).</td></tr>
+</table>
+
+<h2>6. ملف userChrome.css (واجهة المتصفح)</h2>
+<p>هذا الملف يعدّل مظهر فايرفوكس نفسه. يبدأ بمتغيرات CSS تحكم كل شيء:</p>
+<pre>
+:root {
+  --ff-accent: #7c85f5;        /* اللون المميز (بنفسجي) */
+  --ff-accent-soft: rgba(124, 133, 245, 0.18);  /* خلفية لونية ناعمة */
+  --ff-bg: #f4f4f8;            /* خلفية أشرطة الأدوات */
+  --ff-bg-raised: #ffffff;     /* خلفية العناصر البارزة (شريط العنوان، التبويب النشط) */
+  --ff-text: rgba(0, 0, 0, 0.85);    /* لون النص الأساسي */
+  --ff-text-dim: rgba(0, 0, 0, 0.5); /* لون النص الخافت */
+  --ff-border: rgba(180, 185, 255, 0.25); /* لون الحدود */
+  --ff-radius: 10px;           /* استدارة الزوايا */
+}
+</pre>
+<table>
+  <tr><th>المحدد (Selector)</th><th>ماذا يفعل</th></tr>
+  <tr><td><code>*</code></td><td>كل عناصر الواجهة: فرض خط Segoe UI على المتصفح كاملاً.</td></tr>
+  <tr><td><code>#navigator-toolbox</code>, <code>#nav-bar</code>, <code>#TabsToolbar</code>, <code>#PersonalToolbar</code></td><td>أشرطة الأدوات الرئيسية: خلفية فاتحة بدون حدود.</td></tr>
+  <tr><td><code>toolbar</code></td><td>كل الأشرطة: لون النص.</td></tr>
+  <tr><td><code>#PersonalToolbar</code></td><td><b>شريط العلامات (المفضلة)</b>: حجم الخط 11px وارتفاع منخفض.</td></tr>
+  <tr><td><code>#PersonalToolbar toolbarbutton</code></td><td>أزرار العلامات داخل الشريط: حشوة صغيرة.</td></tr>
+  <tr><td><code>#urlbar-background</code></td><td>خلفية شريط العنوان (المكان الذي تكتب فيه الروابط).</td></tr>
+  <tr><td><code>#urlbar[focused="true"] #urlbar-background</code></td><td>شريط العنوان عند التركيز عليه: حدود ملونة بعلامة تمييز.</td></tr>
+  <tr><td><code>.tabbrowser-tab .tab-background</code></td><td>خلفية التبويبات: زوايا مستديرة.</td></tr>
+  <tr><td><code>.tabbrowser-tab[visuallyselected="true"] .tab-background</code></td><td><b>التبويب النشط</b>: خلفية بيضاء وحدود.</td></tr>
+  <tr><td><code>.tabbrowser-tab[visuallyselected="true"] .tab-label</code></td><td>نص التبويب النشط: داكن.</td></tr>
+  <tr><td><code>.tabbrowser-tab .tab-content</code></td><td>نص التبويبات غير النشطة: خافت.</td></tr>
+  <tr><td><code>#identity-box</code>, <code>#page-action-buttons toolbarbutton</code>, <code>toolbar #star-button</code></td><td>أيقونات القفل والنجمة والأزرار بجانب شريط العنوان.</td></tr>
+  <tr><td><code>#panel-main-view</code></td><td>القوائم المنسدلة: خلفية بيضاء ونص داكن.</td></tr>
+</table>
+<p>ملاحظة: <code>!important</code> يمنح القاعدة الأولوية القصوى حتى لا تتغلب عليها أنماط فايرفوكس الداخلية.</p>
+
+<h2>7. ملف userContent.css (صفحات الويب)</h2>
+<table>
+  <tr><th>المصطلح / المحدد</th><th>الشرح</th></tr>
+  <tr><td><code>@-moz-document regexp(".*")</code></td><td>شرط يطبّق القواعد التالية على <b>كل</b> المواقع.</td></tr>
+  <tr><td><code>@-moz-document url(about:newtab), url(about:home)</code></td><td>تطبيق القواعد فقط على صفحة التبويب الجديد والصفحة الرئيسية.</td></tr>
+  <tr><td><code>* { font-family: ... }</code></td><td>فرض Segoe UI على كل النصوص في كل المواقع (مع بديل عربي).</td></tr>
+  <tr><td><code>::selection</code></td><td>لون تحديد النص بالماوس.</td></tr>
+  <tr><td><code>.search-wrapper .search-handoff-button</code>, <code>.search-wrapper input</code></td><td>شريط البحث في صفحة التبويب الجديد.</td></tr>
+  <tr><td><code>.top-site-outer .tile</code></td><td>بلاطات المواقع الأكثر زيارة.</td></tr>
+  <tr><td><code>scrollbar</code>, <code>scrollbar thumb</code></td><td>شريط التمرير ولونه في كل الصفحات.</td></tr>
+</table>
+
+<h2>8. flake.nix — backupFileExtension</h2>
+<pre>
+home-manager.useGlobalPkgs = true;
+home-manager.useUserPackages = true;
+home-manager.backupFileExtension = "backup";
+</pre>
+<p>عندما تريد Home Manager كتابة ملف موجود مسبقاً (مثل <code>profiles.ini</code>) لا تفشل بل تنقله إلى <code>profiles.ini.backup</code> وتكتب الجديد. هذا ما أنقذ إعداداتك عند أول <code>nrs</code>.</p>
+
+<h2>9. المسارات الناتجة بعد التفعيل</h2>
+<pre>
+~/.config/mozilla/firefox/
+├── profiles.ini              ← ملف البروفايلات (يديره Home Manager)
+└── tagudfjt.default/         ← بروفايلك (بياناتك الحقيقية)
+    ├── user.js               ← إعداداتك من settings (يتجاوز prefs.js)
+    ├── chrome/
+    │   ├── userChrome.css    ← واجهة المتصفح
+    │   └── userContent.css   ← صفحات الويب
+    └── ...                   ← العلامات، كلمات المرور، الإضافات
+</pre>
+
+<h2>10. أمثلة عملية للتعديل بنفسك</h2>
+<h3>أ) تغيير حجم خط شريط العلامات</h3>
+<p>في <code>userChrome.css</code> عدّل الرقم 11px:</p>
+<pre>
+#PersonalToolbar { font-size: 12px !important; }
+</pre>
+
+<h3>ب) تغيير اللون المميز لكل شيء</h3>
+<p>في <code>userChrome.css</code> و <code>userContent.css</code> غيّر المتغير:</p>
+<pre>
+--ff-accent: #ff5c5c;   /* أحمر مثلاً */
+</pre>
+
+<h3>ج) تفعيل الوضع الداكن</h3>
+<p>في <code>default.nix</code> داخل <code>settings</code>:</p>
+<pre>
+"ui.systemUsesDarkTheme" = 1;
+"browser.theme.toolbar-theme" = "dark";
+"browser.theme.content-theme" = "dark";
+</pre>
+
+<h3>د) تكبير/تصغير خط صفحات الويب</h3>
+<pre>
+"font.size.variable.x-western" = 18;  /* أكبر */
+</pre>
+
+<h3>هـ) إخفاء شريط التبويبات مع إبقائه ظاهراً عند التمرير</h3>
+<pre>
+#TabsToolbar { visibility: collapse !important; margin-bottom: 28px !important; }
+</pre>
+
+<h3>و) تغيير لون التبويب النشط</h3>
+<pre>
+.tabbrowser-tab[visuallyselected="true"] .tab-background {
+  background: #eef2ff !important;
+}
+</pre>
+
+<h2>11. خطوات التفعيل والتجريب</h2>
+<ol>
+  <li>عدّل الملفات ثم نفّذ <code>nrs</code> (الاسم المستعار لـ <code>nixos-rebuild switch --flake .#benattia</code>).</li>
+  <li>أغلق فايرفوكس تماماً وأعد فتحه حتى تُطبَّق التغييرات.</li>
+  <li>يمكنك فتح <code>about:config</code> في فايرفوكس للبحث عن أي إعداد قبل إضافته إلى Nix.</li>
+</ol>
+
+<div class="note">
+<b>قاعدة ذهبية:</b> أي إعداد تريده "دائماً" ضعه في <code>default.nix</code> (settings) ليبقى محمياً من التغيير، وأي تنسيق بصري ضعه في ملفات CSS.
+</div>
+
+</body>
+</html>
