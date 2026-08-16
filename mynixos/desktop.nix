@@ -1,8 +1,6 @@
 { config, pkgs, inputs, ... }:
 
 let
-  # Windows 11 style icon theme (yellow folders, not in nixpkgs)
-  win11IconTheme = pkgs.callPackage ./programs/file-manager/win11-icon-theme.nix { };
   # 1. Define the path to your programs directory
   #programsDir = /home/benattia/mynixos/config3/programs;
 
@@ -68,8 +66,6 @@ in
 
       vscode
       alacritty
-      nemo
-      thunar
       posy-cursors
       swaylock-effects
       swaynotificationcenter
@@ -102,7 +98,6 @@ in
       # extract zip
       unzip
       file-roller
-      nemo-fileroller
       # لتغطية معظم الصيغ المضغوطة
       zip
       p7zip
@@ -132,11 +127,9 @@ libreoffice
       enable = true;
       theme = {
         name = "Orchis-Light";
-        #package = pkgs.orchis-theme;
       };
       iconTheme = {
-        name = "Win11";
-        package = win11IconTheme;
+        name = "Tela-circle-light";
       };
     };
 
