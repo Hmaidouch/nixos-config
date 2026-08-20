@@ -5,7 +5,7 @@
 # قراءة ثيمات النظام + ثيمات الـ Home Manager الخاص بالمستخدم + ثيمات المجلد المحلي المباشر
 THEMES=$( ( ls /run/current-system/sw/share/themes 2>/dev/null
             ls $HOME/.local/state/home-manager/gcroots/current-home/home-path/share/themes 2>/dev/null
-          ) | sort -u )
+          ) | sort -u | grep -v -E '(hdpi|xhdpi)$' | grep -v -E '^(Adwaita|HighContrast)' )
 
 CACHE_DIR="$HOME/.cache/themes"
 STATE_FILE="$CACHE_DIR/state"

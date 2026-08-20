@@ -19,6 +19,9 @@ let
   # 4. Map the directory names to import paths (e.g., ./config/programs/zsh)
   #    Nix automatically looks for default.nix inside these folders.
   programImports = map (name: programsDir + "/${name}") directories;
+
+  papirusYellow = pkgs.callPackage ../pkgs/papirus-yellow { };
+  papirusCustomFolders = pkgs.callPackage ../pkgs/papirus-custom-folders { inherit papirusYellow; };
 in
 {
   #  imports = [
@@ -89,6 +92,7 @@ in
       gruvbox-gtk-theme       # ثيم جروف بوكس الدافئ
       arc-theme               # ثيم Arc الكلاسيكي الخفيف
       orchis-theme
+      papirusCustomFolders
       
       # حزمة تابعة لأيقوناتك المفضلة لتكتمل التجربة
       tela-circle-icon-theme
@@ -126,10 +130,13 @@ libreoffice
     gtk = {
       enable = true;
       theme = {
-        name = "Orchis-Light";
+        #name = "Papirus-Light";
+        name = "Matcha-light-azul";
       };
       iconTheme = {
-        name = "Tela-circle-light";
+        #name = "Tela-circle-ligh";
+        name = "Papirus-Light";
+        #name = "Win11";
       };
     };
 

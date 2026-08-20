@@ -111,7 +111,6 @@ in
       enable = true;
       settings = {
         "org.gnome.desktop.interface" = {
-          "icon-theme" = "Tela-circle-light";
           "gtk-theme" = "Orchis-Light";
         };
         "org.nemo.preferences" = {
