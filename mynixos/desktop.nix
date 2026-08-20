@@ -131,11 +131,13 @@ libreoffice
       theme = {
         #name = "Papirus-Light";
         name = "Matcha-light-azul";
+       # name = "Orchis-Light";
       };
       iconTheme = {
-        #name = "Tela-circle-ligh";
+        #name = "Tela-circle-light";
         name = "Papirus-Light";
         #name = "Win11";
+        #name = "breeze";
       };
     };
 
