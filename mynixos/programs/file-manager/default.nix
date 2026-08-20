@@ -14,7 +14,7 @@ let
 
   nemoCss = ''
     .nemo-canvas-item {
-      font-size: 20px;
+      font-size: 10px;
     }
   '';
 
