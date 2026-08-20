@@ -21,7 +21,6 @@ let
   programImports = map (name: programsDir + "/${name}") directories;
 
   papirusYellow = pkgs.callPackage ../pkgs/papirus-yellow { };
-  papirusCustomFolders = pkgs.callPackage ../pkgs/papirus-custom-folders { inherit papirusYellow; };
 in
 {
   #  imports = [
@@ -92,7 +91,7 @@ in
       gruvbox-gtk-theme       # ثيم جروف بوكس الدافئ
       arc-theme               # ثيم Arc الكلاسيكي الخفيف
       orchis-theme
-      papirusCustomFolders
+      papirusYellow
       
       # حزمة تابعة لأيقوناتك المفضلة لتكتمل التجربة
       tela-circle-icon-theme
