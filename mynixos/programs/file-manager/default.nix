@@ -10,13 +10,11 @@ let
     file:///home/benattia/Pictures Pictures
     file:///home/benattia/Videos Videos
     file:///home/benattia/Music Music
-    file:///mnt/disk_d disk_d
-    file:///mnt/disk_d/mynixos/config3 config3
   '';
 
   nemoCss = ''
     .nemo-canvas-item {
-      font-size: 10px;
+      font-size: 20px;
     }
   '';
 
