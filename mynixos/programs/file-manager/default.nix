@@ -13,8 +13,17 @@ let
   '';
 
   nemoCss = ''
+    /* حجم خط تسميات الأيقونات في عرض الأيقونات */
     .nemo-canvas-item {
-      font-size: 10px;
+      font-size: 5px !important;
+    }
+    /* حجم خط في عرض القائمة والمضغوط */
+    .nemo-window .nemo-window-pane .view {
+      font-size: 5px !important;
+    }
+    /* حجم خط في الشريط الجانبي */
+    .nemo-places-sidebar .view {
+      font-size: 5px !important;
     }
   '';
 
@@ -56,10 +65,14 @@ EOF
 in
 {
   home-manager.users.benattia = {
+
+    # xdg.configFile."mimeapps.list".source = ./mimeapps.list;
+
     home.packages = [
       win11IconTheme
-      nemo
-      thunar
+      #nemo
+      #thunar
+      
       pkgs.nemo-fileroller
     ];
 

@@ -23,15 +23,16 @@ check_rofi_running() {
 build_menu() {
     printf "All Apps\x00icon\x1fappgrid\n"
     printf "firefox\x00display\x1fFirefox\x1ficon\x1ffirefox\n"
-    printf "nemo\x00display\x1fNemo\x1ficon\x1fnemo\n"
+    printf "dolphin\x00display\x1fFile\x1ficon\x1fnemo\n"
     printf "alacritty\x00display\x1fTerminal\x1ficon\x1ffoot\n"
     printf "code\x00display\x1fVS Code\x1ficon\x1fcode\n"
     printf "localsend_app\x00display\x1fLocalSend\x1ficon\x1flocalsend_app\n"
     printf "gnome-text-editor\x00display\x1fText\x1ficon\x1forg.gnome.TextEditor\n"
-    printf "thunar\x00display\x1fThunar\x1ficon\x1forg.xfce.thunar\n"
     printf "galculator\x00display\x1fGalculator\x1ficon\x1fgalculator\n"
     printf "libreoffice --writer\x00display\x1fWriter\x1ficon\x1flibreoffice-writer\n"
     printf "resources\x00display\x1fResources\x1ficon\x1futilities-system-monitor\n"
+    
+
 }
 
 launch_app() {

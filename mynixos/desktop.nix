@@ -123,6 +123,10 @@ libreoffice
       veracrypt
       cryptomator
 
+      kdePackages.dolphin
+      yazi
+      xdg-utils  # لتحديد البرامج الافتراضية
+
     ];
 
 # أو باستخدام الموديول الجاهز لـ Home Manager (وهو الأجمل):
