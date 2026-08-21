@@ -23,7 +23,7 @@ check_rofi_running() {
 build_menu() {
     printf "All Apps\x00icon\x1fappgrid\n"
     printf "firefox\x00display\x1fFirefox\x1ficon\x1ffirefox\n"
-    printf "dolphin\x00display\x1fFile\x1ficon\x1fnemo\n"
+    printf "dolphin\x00display\x1fFile\x1ficon\x1forg.kde.dolphin\n"
     printf "alacritty\x00display\x1fTerminal\x1ficon\x1ffoot\n"
     printf "code\x00display\x1fVS Code\x1ficon\x1fcode\n"
     printf "localsend_app\x00display\x1fLocalSend\x1ficon\x1flocalsend_app\n"

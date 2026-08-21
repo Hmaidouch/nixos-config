@@ -16,7 +16,20 @@ let
   # يجب أن يطابق اسم المجلد قيمة ViewPropsTimestamp في dolphinrc
   viewPropsTimestamp = "2026,8,21,0,0,0";
 
-  dolphinGlobalViewProps = ''
+  # قوالب تُزرع مرة واحدة فقط ثم تبقى قابلة للكتابة كي يحفظ dolphin تعديلاته
+  dolphinRcTemplate = pkgs.writeText "dolphinrc" ''
+    [General]
+    GlobalViewProps=true
+    ShowFullPath=true
+    ShowFullPathInTitleBar=true
+    ViewPropsTimestamp=${viewPropsTimestamp}
+
+    [KFileDialog Settings]
+    Places Icons Auto-resize=false
+    Places Icons Static Size=32
+  '';
+
+  dolphinViewPropsTemplate = pkgs.writeText "dolphin-viewprops" ''
     [Dolphin]
     Version=2
     ViewMode=2
@@ -71,22 +84,23 @@ in
       Theme=Win11
     '';
 
-    # إعدادات dolphin
-    xdg.configFile."dolphinrc" = {
-      force = true;
-      text = ''
-        [General]
-        GlobalViewProps=true
-        ShowFullPath=true
-        ShowFullPathInTitleBar=true
-        ViewPropsTimestamp=${viewPropsTimestamp}
-      '';
-    };
-
-    # خصائص العرض الافتراضية: عرض القائمة، الملفات المخفية، المجلدات أولاً
-    xdg.dataFile."dolphin/viewprops/${viewPropsTimestamp}/.directory" = {
-      force = true;
-      text = dolphinGlobalViewProps;
+    # زرع إعدادات dolphin مرة واحدة فقط:
+    # - إذا كان الملف symlink من home-manager أو غير موجود → نسخة قابلة للكتابة
+    # - إذا كان ملفاً حقيقياً → يُترك كما هو (تعديلات المستخدم داخل dolphin محفوظة)
+    home.activation.seedDolphinConfig = {
+      before = [ ];
+      after = [ "writeBoundary" ];
+      data = ''
+      seedIfMissing() {
+        local src="$1" dst="$2"
+        if [ -L "$dst" ] || [ ! -e "$dst" ]; then
+          mkdir -p "$(dirname "$dst")"
+          install -m 644 "$src" "$dst"
+        fi
+      }
+      seedIfMissing "${dolphinRcTemplate}" "$HOME/.config/dolphinrc"
+      seedIfMissing "${dolphinViewPropsTemplate}" "$HOME/.local/share/dolphin/viewprops/${viewPropsTimestamp}/.directory"
+    '';
     };
   };
 }
