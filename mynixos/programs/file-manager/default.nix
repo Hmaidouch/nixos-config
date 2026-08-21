@@ -12,56 +12,18 @@ let
     file:///home/benattia/Music Music
   '';
 
-  nemoCss = ''
-    /* حجم خط تسميات الأيقونات في عرض الأيقونات */
-    .nemo-canvas-item {
-      font-size: 5px !important;
-    }
-    /* حجم خط في عرض القائمة والمضغوط */
-    .nemo-window .nemo-window-pane .view {
-      font-size: 5px !important;
-    }
-    /* حجم خط في الشريط الجانبي */
-    .nemo-places-sidebar .view {
-      font-size: 5px !important;
-    }
+  # خصائص العرض العامة لـ dolphin (تُقرأ من viewprops عند تفعيل GlobalViewProps)
+  # يجب أن يطابق اسم المجلد قيمة ViewPropsTimestamp في dolphinrc
+  viewPropsTimestamp = "2026,8,21,0,0,0";
+
+  dolphinGlobalViewProps = ''
+    [Dolphin]
+    Version=2
+    ViewMode=2
+    HiddenFilesShown=true
+    SortFoldersFirst=true
+    VisibleRoles=Details_name,Details_size,Details_type,Details_modificationtime
   '';
-
-  # دليل GTK الخاص بمدير الملفات فقط
-  fmConfigHome = "$HOME/.config/file-manager";
-
-  # غلاف يوجّه XDG_CONFIG_HOME إلى fmConfigHome كي تقرأه nemo/thunar
-  # فقط (Win11) بينما بقية التطبيقات تستخدم الثيم العام.
-  makeFmWrapper = name: pkg: pkgs.symlinkJoin {
-    name = name;
-    paths = [ pkg ];
-    postBuild = ''
-      rm -f $out/bin/${name}
-      cat > $out/bin/${name} <<'EOF'
-#!/bin/sh
-OV="$HOME/.config/file-manager"
-mkdir -p "$OV/gtk-3.0"
-# ربط بقية إعدادات ~/.config كي لا تنكسر التطبيقات المفتوحة من المدير
-for d in "$HOME"/.config/*; do
-  [ -e "$d" ] || continue
-  base="$(basename "$d")"
-  [ "$base" = "gtk-3.0" ] && continue
-  [ "$base" = "file-manager" ] && continue
-  if [ -L "$OV/$base" ] && [ ! -e "$OV/$base" ]; then
-    ln -sfn "$d" "$OV/$base"
-  elif [ ! -e "$OV/$base" ]; then
-    ln -s "$d" "$OV/$base"
-  fi
-done
-export XDG_CONFIG_HOME="$OV"
-exec ${pkg}/bin/${name} "$@"
-EOF
-      chmod +x $out/bin/${name}
-    '';
-  };
-
-  nemo = makeFmWrapper "nemo" pkgs.nemo;
-  thunar = makeFmWrapper "thunar" pkgs.thunar;
 in
 {
   home-manager.users.benattia = {
@@ -70,16 +32,15 @@ in
 
     home.packages = [
       win11IconTheme
-      #nemo
-      #thunar
-      
-      pkgs.nemo-fileroller
+
+      # دعم الضغط والفك داخل dolphin
+      pkgs.kdePackages.ark
     ];
 
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
-        "inode/directory" = "nemo.desktop";
+        "inode/directory" = "org.kde.dolphin.desktop";
         "text/plain" = [ "org.gnome.TextEditor.desktop" ];
         "video/mp4" = [ "vlc.desktop" ];
         "application/pdf" = [ "firefox.desktop" ];
@@ -104,49 +65,28 @@ in
       text = bookmarks;
     };
 
-    # حجم خط تسميات الأيقونات في عرض الأيقونات
-    xdg.configFile."gtk-3.0/gtk.css".text = nemoCss;
+    # أيقونات Win11 لتطبيقات Qt/KDE (dolphin)
+    xdg.configFile."kdeglobals".text = ''
+      [Icons]
+      Theme=Win11
+    '';
 
-    # إعدادات GTK المخصصة لمدير الملفات فقط (Win11)
-    home.file = {
-      ".config/file-manager/gtk-3.0/settings.ini".text = ''
-        [Settings]
-        gtk-icon-theme-name=Win11
-        gtk-theme-name=Orchis-Light
+    # إعدادات dolphin
+    xdg.configFile."dolphinrc" = {
+      force = true;
+      text = ''
+        [General]
+        GlobalViewProps=true
+        ShowFullPath=true
+        ShowFullPathInTitleBar=true
+        ViewPropsTimestamp=${viewPropsTimestamp}
       '';
-      ".config/file-manager/gtk-3.0/bookmarks".text = bookmarks;
-      ".config/file-manager/gtk-3.0/gtk.css".text = nemoCss;
     };
 
-    dconf = {
-      enable = true;
-      settings = {
-        "org.gnome.desktop.interface" = {
-          "gtk-theme" = "Orchis-Light";
-        };
-        "org.nemo.preferences" = {
-          "click-policy" = "double";
-          "show-hidden-files" = true;
-          "show-full-path-titles" = true;
-          "confirm-trash" = true;
-          "sort-directories-first" = true;
-          "default-sort-order" = "name";
-          "default-folder-viewer" = "list-view";
-          "date-format" = "locale";
-        };
-        "org.nemo.window-state" = {
-          "start-with-toolbar" = true;
-          "start-with-location-bar" = true;
-          "start-with-status-bar" = true;
-          "start-with-sidebar" = true;
-          "start-with-menu-bar" = true;
-          "side-pane-view" = "places";
-        };
-        "org.nemo.list-view" = {
-          "default-visible-columns" = [ "name" "size" "type" "date_modified" ];
-          "default-column-order" = [ "name" "size" "type" "date_modified" ];
-        };
-      };
+    # خصائص العرض الافتراضية: عرض القائمة، الملفات المخفية، المجلدات أولاً
+    xdg.dataFile."dolphin/viewprops/${viewPropsTimestamp}/.directory" = {
+      force = true;
+      text = dolphinGlobalViewProps;
     };
   };
 }
